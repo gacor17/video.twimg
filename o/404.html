@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+  // paksa semua /o/ID masuk ke index.html
+  if (location.pathname.startsWith('/o/')) {
+    location.replace('/o/index.html' + location.pathname.replace('/o', ''));
+  }
+</script>
+</head>
+<body></body>
+</html>
