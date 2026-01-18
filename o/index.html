@@ -3,10 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <script>
+(async () => {
   const id = location.pathname.split('/').pop();
 
-  // LINK IKLAN
-  location.href = "https://otieu.com/4/9938705";
+  try {
+    const res = await fetch('data.json');
+    const json = await res.json();
+
+    if (json[id]) {
+      location.href = json[id].ads;
+    } else {
+      document.body.innerHTML = "Link tidak valid";
+    }
+  } catch (e) {
+    document.body.innerHTML = "Error loading data";
+  }
+})();
 </script>
 </head>
 <body>
