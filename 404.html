@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <script>
-  // paksa semua /o/ID masuk ke index.html
-  if (location.pathname.startsWith('/o/')) {
-    location.replace('/o/index.html' + location.pathname.replace('/o', ''));
+(function () {
+  const path = location.pathname;
+
+  // hanya tangani /o/ID (BUKAN index.html)
+  if (path.startsWith('/o/') && !path.includes('index.html')) {
+    const id = path.split('/')[2];
+    location.replace('/o/index.html?id=' + id);
   }
+})();
 </script>
 </head>
 <body></body>
