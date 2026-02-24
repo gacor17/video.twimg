@@ -14,9 +14,21 @@
 body{margin:0;background:#0f0f0f;font-family:Roboto,Arial,sans-serif;color:#fff}
 
 /* HEADER */
-.header{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#0f0f0f;position:sticky;top:0;z-index:100}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+  background: rgba(15, 15, 15, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 .logo{font-size:20px;font-weight:bold}
-.search-icon-trigger{cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;transition:.2s}
+.search-icon-trigger{cursor:pointer;padding:0px;border-radius:50%;display:flex;align-items:center;transition:.2s}
 .search-icon-trigger:hover{background:#303030}
 
 /* SEARCH */
@@ -82,8 +94,11 @@ z-index:3;
 </head>
 <body>
 
+
 <header class="header">
-<div class="logo">STREAMVID</div>
+<h1 class="logo">
+  STREAM<span style="color:orange;">VID</span>
+</h1>
 <div class="search-icon-trigger" onclick="toggleSearch()">
 <span class="material-symbols-outlined">search</span>
 </div>
@@ -156,8 +171,8 @@ const card=document.createElement("div");
 card.className=`card ${isShort?'short':''}`;
 card.innerHTML=`
 <div class="thumbnail">
-<img src="${video.thumbnail}" loading="lazy">
-<span class="duration-badge">...</span>
+<img src="${video.thumbnail}" loading="lazy" decoding="async">
+<span class="duration-badge">${video.duration}</span>
 </div>
 <div class="info">
 <div>
@@ -168,24 +183,6 @@ card.innerHTML=`
 </div>`;
 card.onclick=()=>location.href="detail.html?id="+video.id;
 
-/* LOAD DURATION ONLY WHEN VISIBLE */
-const badge=card.querySelector(".duration-badge");
-const observerDuration=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-const tempVideo=document.createElement("video");
-tempVideo.src=video.video;
-tempVideo.addEventListener("loadedmetadata",()=>{
-const total=Math.floor(tempVideo.duration);
-const m=Math.floor(total/60);
-const s=total%60;
-badge.textContent=`${m}:${s<10?'0':''}${s}`;
-});
-observerDuration.unobserve(card);
-}
-});
-});
-observerDuration.observe(card);
 
 /* HOLD PREVIEW */
 let holdTimer;
