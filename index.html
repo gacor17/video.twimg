@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  
+
 <script>(function(s){s.dataset.zone='10373390',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-  
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STREAMVID</title>
@@ -41,6 +41,20 @@ body{margin:0;background:#0f0f0f;font-family:Roboto,Arial,sans-serif;color:#fff}
 .thumbnail{width:100%;aspect-ratio:16/9;background:#111;overflow:hidden;position:relative}
 .card.short .thumbnail{aspect-ratio:9/16;border-radius:10px}
 
+/* DURATION BADGE */
+.duration-badge{
+position:absolute;
+bottom:8px;
+right:8px;
+background:rgba(0,0,0,0.85);
+color:#fff;
+font-size:12px;
+padding:3px 6px;
+border-radius:4px;
+font-weight:500;
+z-index:3;
+}
+
 /* HOVER EFFECT */
 .card .thumbnail{transition:transform .3s ease,box-shadow .3s ease}
 .card .thumbnail img{transition:transform .4s ease}
@@ -51,20 +65,15 @@ body{margin:0;background:#0f0f0f;font-family:Roboto,Arial,sans-serif;color:#fff}
 
 .thumbnail img{width:100%;height:100%;object-fit:cover}
 
-/* RIPPLE */
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:rippleAnim .6s linear;pointer-events:none}
-@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+/* PREVIEW */
+.preview-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(40px);transition:all .6s ease}
 .reveal.active{opacity:1;transform:translateY(0)}
 
-/* PREVIEW */
-.preview-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2}
-
 /* TEXT */
 .info{display:flex;margin-top:10px;padding:0 4px}
-.avatar{width:32px;height:32px;border-radius:50%;margin-right:10px;object-fit:cover}
 .title{font-size:15px;font-weight:500;line-height:1.4;max-height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .card.short .title{-webkit-line-clamp:3}
 .channel{font-size:13px;color:#aaa;margin-top:4px}
@@ -148,6 +157,7 @@ card.className=`card ${isShort?'short':''}`;
 card.innerHTML=`
 <div class="thumbnail">
 <img src="${video.thumbnail}" loading="lazy">
+<span class="duration-badge">...</span>
 </div>
 <div class="info">
 <div>
@@ -158,7 +168,26 @@ card.innerHTML=`
 </div>`;
 card.onclick=()=>location.href="detail.html?id="+video.id;
 
-/* HOLD PREVIEW SYSTEM */
+/* LOAD DURATION ONLY WHEN VISIBLE */
+const badge=card.querySelector(".duration-badge");
+const observerDuration=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+const tempVideo=document.createElement("video");
+tempVideo.src=video.video;
+tempVideo.addEventListener("loadedmetadata",()=>{
+const total=Math.floor(tempVideo.duration);
+const m=Math.floor(total/60);
+const s=total%60;
+badge.textContent=`${m}:${s<10?'0':''}${s}`;
+});
+observerDuration.unobserve(card);
+}
+});
+});
+observerDuration.observe(card);
+
+/* HOLD PREVIEW */
 let holdTimer;
 card.addEventListener("touchstart",()=>{
 holdTimer=setTimeout(()=>startPreview(card,video.video),500);
@@ -169,7 +198,6 @@ card.addEventListener("mouseleave",()=>clearTimeout(holdTimer));
 return card;
 }
 
-/* PREVIEW */
 let currentPreview=null;
 function startPreview(card,src){
 stopPreview();
@@ -192,20 +220,6 @@ currentPreview=null;
 }
 }
 
-/* RIPPLE */
-document.addEventListener("click",function(e){
-const card=e.target.closest(".card");
-if(!card)return;
-const ripple=document.createElement("span");
-ripple.className="ripple";
-const rect=card.getBoundingClientRect();
-ripple.style.left=(e.clientX-rect.left)+"px";
-ripple.style.top=(e.clientY-rect.top)+"px";
-card.appendChild(ripple);
-setTimeout(()=>ripple.remove(),600);
-});
-
-/* REVEAL */
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting)entry.target.classList.add("active");
@@ -215,7 +229,6 @@ function observeReveal(){
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 }
 
-/* SEARCH */
 function toggleSearch(){
 const box=document.getElementById("searchBox");
 const hidden=box.style.display==="none"||box.style.display==="";
