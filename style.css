@@ -1,42 +1,141 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STREAMVID</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+body{
+margin:0;
+background:#0f0f0f;
+font-family:'Inter',sans-serif;
+color:#fff;
+}
 
-<link rel="stylesheet" href="style.css">
+/* HEADER */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 24px;
+background:rgba(15,15,15,.75);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+.logo{font-size:20px;font-weight:800}
+.search-icon-trigger{cursor:pointer;padding:8px;border-radius:50%}
+.search-icon-trigger:hover{background:#303030}
 
-</head>
-<body>
+/* FILTER TABS */
+.filter-tabs{
+display:flex;
+gap:12px;
+padding:14px 24px;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
 
-<header class="header">
-<h1 class="logo">STREAM<span style="color:orange;">VID</span></h1>
-<div class="search-icon-trigger" onclick="toggleSearch()">
-<span class="material-symbols-outlined">search</span>
-</div>
-</header>
+.tab-btn{
+cursor:pointer;
+font-weight:600;
+color:#aaa;
+padding:8px 18px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:8px;
+transition:.2s ease;
+}
 
-<div class="filter-tabs">
-  <div class="tab-btn active" data-type="latest">Video Terbaru</div>
-  <div class="tab-btn" data-type="all">Semua Video</div>
-</div>
+.tab-btn:hover{
+border-color:orange;
+color:white;
+}
 
-<div class="search-box" id="searchBox">
-<div class="search-wrapper">
-<input type="text" id="searchInput" placeholder="Cari video...">
-<button class="search-submit-btn">
-<span class="material-symbols-outlined">search</span>
-</button>
-</div>
-</div>
+.tab-btn.active{
+color:white;
+border-color:orange;
+background:rgba(255,165,0,.15);
+}
 
-<div class="main-feed" id="mainFeed"></div>
-<div class="pagination" id="pagination"></div>
-</body>
-<script src="main.js"></script>
-</html>
+/* SEARCH */
+.search-box{display:none;padding:10px 20px;background:#0f0f0f}
+.search-wrapper{
+display:flex;
+align-items:center;
+max-width:600px;
+margin:0 auto;
+background:#121212;
+border:1px solid #303030;
+border-radius:40px;
+padding-left:15px;
+overflow:hidden;
+}
+.search-wrapper input{
+flex:1;
+background:transparent;
+border:none;
+color:#fff;
+padding:10px;
+font-size:16px;
+outline:none;
+}
+.search-submit-btn{
+background:#222;
+border:none;
+border-left:1px solid #303030;
+padding:8px 20px;
+color:#fff;
+display:flex;
+align-items:center;
+cursor:pointer;
+}
+
+/* GRID */
+.main-feed{padding:0}
+.section-shorts{margin:24px 0;padding:16px 0}
+.section-title{font-size:18px;font-weight:600;margin-bottom:12px;padding:0 16px}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;margin-bottom:32px;padding:0 16px}
+.shorts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px}
+
+/* CARD */
+.card{cursor:pointer}
+.thumbnail{width:100%;aspect-ratio:16/9;background:#111;overflow:hidden;position:relative;border-radius:12px}
+.card.short .thumbnail{aspect-ratio:9/16}
+.thumbnail img{width:100%;height:100%;object-fit:cover}
+.duration-badge{
+position:absolute;
+bottom:8px;
+right:8px;
+background:rgba(0,0,0,.85);
+font-size:12px;
+padding:3px 6px;
+border-radius:4px;
+}
+.info{margin-top:10px;padding:0 4px}
+.title{font-size:16px;font-weight:600}
+.meta{font-size:12.5px;color:#aaa}
+
+/* PAGINATION */
+.pagination{
+display:flex;
+justify-content:center;
+gap:8px;
+margin:30px 0 60px;
+flex-wrap:wrap;
+}
+.page-btn{
+width:38px;
+height:38px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid #303030;
+border-radius:8px;
+cursor:pointer;
+transition:.2s;
+font-weight:600;
+}
+.page-btn:hover{
+border-color:orange;
+color:orange;
+}
+.page-btn.active{
+border-color:orange;
+color:orange;
+}
