@@ -3,154 +3,23 @@
 <head>
 
 <script>(function(s){s.dataset.zone='10373390',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
+  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detail Video</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css"/>
 
-<style>
-body{
-  margin:0;
-  background:#0f0f0f;
-  font-family:Arial;
-  color:white;
-}
+<link rel="stylesheet" href="detail.css">
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:0px;
-}
-
-/* ===== VIDEO UTAMA ===== */
-
-.video-wrapper{
-  position:relative;
-  width:100%;
-  background:#000;
-  overflow:hidden;
-}
-
-/* Portrait kecil */
-.video-wrapper.portrait{
-  max-width:380px;
-  margin:auto;
-}
-
-.video-wrapper.landscape{
-  width:100%;
-}
-
-.video-wrapper img{
-  width:100%;
-  display:block;
-}
-
-#player{
-  width:100%;
-  display:none;
-}
-
-.play-btn{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  width:70px;
-  height:70px;
-  background:rgba(0,0,0,0.6);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:10;
-}
-
-.play-btn::before{
-  content:'';
-  border-style:solid;
-  border-width:15px 0 15px 25px;
-  border-color:transparent transparent transparent white;
-  margin-left:5px;
-}
-
-.title{
-  margin-top:15px;
-  font-size:20px;
-  font-weight:bold;
-}
-
-/* ===== REKOMENDASI ===== */
-
-.recommend-section{
-  margin-top:40px;
-}
-
-.recommend-title{
-  font-size:18px;
-  margin-bottom:15px;
-}
-
-.recommend-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
-  gap:12px;
-}
-
-.recommend-card{
-  background:#181818;
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-}
-
-.recommend-thumb{
-  width:100%;
-  background:#000;
-  overflow:hidden;
-  position:relative;
-}
-
-.recommend-thumb.landscape{
-  aspect-ratio:16/9;
-}
-
-.recommend-thumb.portrait{
-  aspect-ratio:9/16;
-}
-
-.recommend-thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.rec-title{
-  padding:8px;
-  font-size:13px;
-}
-
-/* preview video kecil */
-.preview-video{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:none;
-}
-</style>
 </head>
 <body>
 
 <div class="container">
 
   <div class="video-wrapper" id="videoWrapper">
-    <img id="thumb">
+    <img id="thumb" draggable="false">
     <div class="play-btn" id="playBtn"></div>
     <video id="player" playsinline></video>
   </div>
@@ -166,120 +35,7 @@ body{
 
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
-<script>
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-const params = new URLSearchParams(window.location.search);
-const videoId = params.get("id");
-
-let allVideos = [];
-let player;
-
-fetch('videos.json')
-.then(res => res.json())
-.then(data => {
-
-  allVideos = data;
-  const video = data.find(v => v.id === videoId);
-
-  if(!video){
-    document.body.innerHTML = "Video tidak ditemukan";
-    return;
-  }
-
-  document.getElementById("title").innerText = video.title;
-  document.getElementById("thumb").src = video.thumbnail;
-
-  const wrapper = document.getElementById("videoWrapper");
-  wrapper.classList.add(video.orientation === "portrait" ? "portrait" : "landscape");
-
-  const videoElement = document.getElementById("player");
-  videoElement.src = video.video;
-
-  player = new Plyr('#player', {
-    controls: ['play','progress','current-time','mute','volume','fullscreen'],
-    settings: []
-  });
-
-  loadRecommendations(videoId);
-});
-
-/* PLAY */
-document.getElementById("playBtn").addEventListener("click", function(){
-
-  const video = document.getElementById("player");
-
-  video.style.display="block";
-  document.getElementById("thumb").style.display="none";
-  this.style.display="none";
-
-  player.play();
-});
-
-/* REKOMENDASI + PREVIEW HOLD */
-function loadRecommendations(currentId) {
-
-  const grid = document.getElementById("recommendGrid");
-  grid.innerHTML = "";
-
-  const filtered = allVideos.filter(v => v.id !== currentId);
-  const shuffled = filtered.sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, 4);
-
-  selected.forEach(video => {
-
-    const orientationClass = video.orientation === "portrait" ? "portrait" : "landscape";
-
-    const card = document.createElement("div");
-    card.className = "recommend-card";
-
-    card.innerHTML = `
-      <div class="recommend-thumb ${orientationClass}">
-        <img src="${video.thumbnail}">
-        <video class="preview-video" muted loop src="${video.video}"></video>
-      </div>
-      <div class="rec-title">${video.title}</div>
-    `;
-
-    const previewVideo = card.querySelector(".preview-video");
-    const thumbDiv = card.querySelector(".recommend-thumb");
-
-    let holdTimer;
-
-    thumbDiv.addEventListener("touchstart", () => {
-      holdTimer = setTimeout(() => {
-        previewVideo.style.display = "block";
-        previewVideo.play();
-      }, 300); // durasi hold sama seperti index
-    });
-
-    thumbDiv.addEventListener("touchend", () => {
-      clearTimeout(holdTimer);
-      previewVideo.pause();
-      previewVideo.style.display = "none";
-    });
-
-    thumbDiv.addEventListener("mousedown", () => {
-      holdTimer = setTimeout(() => {
-        previewVideo.style.display = "block";
-        previewVideo.play();
-      }, 300);
-    });
-
-    thumbDiv.addEventListener("mouseup", () => {
-      clearTimeout(holdTimer);
-      previewVideo.pause();
-      previewVideo.style.display = "none";
-    });
-
-    card.onclick = () => {
-      window.location.href = "detail.html?id=" + video.id;
-    };
-
-    grid.appendChild(card);
-  });
-}
-</script>
+<script src="detail.js"></script>
 
 </body>
 </html>
