@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STREAMVID</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="header">
+<h1 class="logo">STREAM<span style="color:orange;">VID</span></h1>
+<div class="search-icon-trigger" onclick="toggleSearch()">
+<span class="material-symbols-outlined">search</span>
+</div>
+</header>
+
+<div class="filter-tabs">
+  <div class="tab-btn active" data-type="latest">Video Terbaru</div>
+  <div class="tab-btn" data-type="all">Semua Video</div>
+</div>
+
+<div class="search-box" id="searchBox">
+<div class="search-wrapper">
+<input type="text" id="searchInput" placeholder="Cari video...">
+<button class="search-submit-btn">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+
+<div class="main-feed" id="mainFeed"></div>
+<div class="pagination" id="pagination"></div>
+</body>
+<script src="main.js"></script>
+</html>
