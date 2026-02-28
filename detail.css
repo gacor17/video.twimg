@@ -5,6 +5,10 @@ body{
   color:white;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* disable long press & drag */
 img, video{
   pointer-events:none;
