@@ -1,264 +1,247 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZYTMKBRT1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STREAMVID</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet"><style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;color:#fff;font-family:Inter,sans-serif}
+body{overflow:hidden}
 
-  gtag('config', 'G-MZYTMKBRT1');
-</script>
+.feed{
+  width:100%;
+  height:100vh;
+  overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  scrollbar-width:none;
+}
+.feed::-webkit-scrollbar{display:none}
 
-  <script src='https://countyrecyclefailed.com/jwLQhP/S7I98rrxPtH/mIO9fDiVNLZMeP0OROq/H7E_/SGLNLxv3XorZo/VRxWxWDGKHS9/wxyWJVk1qZALX/tU50HpLksOI/T5QI6gZg/hXFBIBaZ-vd1SxD8/AtF48f9Ys/MrZ'></script>
+.item{
+  width:100%;
+  height:100vh;
+  position:relative;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STREAMVID</title>
+video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+.info{
+  position:absolute;
+  left:15px;
+  right:70px;
+  bottom:25px;
+  z-index:5;
+  pointer-events:none;
+  text-shadow:0 1px 5px #000;
+}
 
-  <style>
-    body { margin: 0; background: #0f0f0f; font-family: 'Inter', sans-serif; color: #fff; scroll-behavior: smooth; }
-    
-    /* HEADER */
-    .header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 20px; background: rgba(15,15,15,0.9);
-      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
-      border-bottom: 1px solid #303030;
-    }
-    .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+.title{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+}
 
-    /* FILTER TABS */
-    .filter-tabs { display: flex; gap: 10px; padding: 15px 20px; overflow-x: auto; }
-    .tab-btn {
-      padding: 8px 16px; background: #222; border: 1px solid #444;
-      border-radius: 20px; cursor: pointer; font-size: 13px; color: #ccc; transition: 0.2s;
-    }
-    .tab-btn.active { background: orange; color: #000; font-weight: 700; border-color: orange; }
+.loading{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111;
+  z-index:2;
+}
 
-    /* SEARCH */
-    .search-box { display: none; padding: 10px 20px; }
-    .search-wrapper {
-      display: flex; background: #1a1a1a; border: 1px solid #333;
-      border-radius: 8px; padding: 5px 12px;
-    }
-    .search-wrapper input { flex: 1; background: transparent; border: none; color: #fff; outline: none; padding: 8px; }
+.spinner{
+  width:35px;
+  height:35px;
+  border:3px solid #555;
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
 
-    /* GRID OPTIMIZED */
-    .main-feed {
-      padding: 15px; display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px; grid-auto-flow: dense;
-    }
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
 
-    @media (min-width: 600px) {
-      .main-feed { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-    }
+.top{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:20;
+  padding:15px;
+  background:linear-gradient(#000b,transparent);
+  pointer-events:none;
+}
 
-    /* CARD & SKELETON */
-    .card {
-      background: #161616; border-radius: 10px; overflow: hidden;
-      cursor: pointer; border: 1px solid #222; transition: 0.2s;
-    }
-    .card:active { transform: scale(0.96); }
-    
-    .video-container {
-      width: 100%; background: #222;
-      display: flex; position: relative;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-    }
+.logo{
+  font-size:21px;
+  font-weight:800;
+}
 
-    .loading-shimmer {
-      background: linear-gradient(90deg, #161616 25%, #222 50%, #161616 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-    }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.logo span{color:orange}
 
-    video.thumbnail-preview {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0; transition: opacity 0.5s ease;
-    }
-    video.loaded { opacity: 1; }
+.empty{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#aaa;
+}
+</style></head><body><div class="top">
+  <div class="logo">STREAM<span>VID</span></div>
+</div><div class="feed" id="feed">
+  <div class="empty">Memuat video...</div>
+</div><script>
+let videos=[];
+let activeVideo=null;
+let loading=new Set();
 
-    .card-info { padding: 10px; }
-    .card-title { font-size: 13px; font-weight: 600; line-height: 1.4; height: 36px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+const feed=document.getElementById("feed");
 
-    /* PAGINATION */
-    .pagination { display: flex; justify-content: center; gap: 5px; padding: 20px 10px 60px; flex-wrap: wrap; }
-    .page-btn {
-      min-width: 38px; height: 38px; display: flex; align-items: center;
-      justify-content: center; background: #1a1a1a; border: 1px solid #333;
-      border-radius: 8px; cursor: pointer; font-size: 14px; color: #fff;
-    }
-    .page-btn.active { background: orange; color: #000; font-weight: bold; border-color: orange; }
-  </style>
-</head>
-<body>
+fetch("videos.json")
+.then(r=>r.json())
+.then(data=>{
+  videos=data.reverse();
+  feed.innerHTML="";
+  render();
+})
+.catch(()=>{
+  feed.innerHTML='<div class="empty">Gagal memuat video</div>';
+});
 
-  <header class="header">
-    <div class="logo">STREAM<span style="color:orange;">VID</span></div>
-    <div onclick="toggleSearch()" style="cursor:pointer"><span class="material-symbols-outlined">search</span></div>
-  </header>
+function render(){
+  const frag=document.createDocumentFragment();
 
-  <div class="filter-tabs">
-    <div class="tab-btn" id="btn-latest" onclick="setFilter('latest')">Video Terbaru</div>
-    <div class="tab-btn" id="btn-all" onclick="setFilter('all')">Semua Video</div>
-  </div>
+  videos.forEach((v,i)=>{
+    const item=document.createElement("div");
+    item.className="item";
+    item.dataset.index=i;
 
-  <div class="search-box" id="searchBox">
-    <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Cari judul..."></div>
-  </div>
+    item.innerHTML=`
+      <div class="loading"><div class="spinner"></div></div>
+      <video muted playsinline loop preload="none"></video>
+      <div class="info">
+        <div class="title">${escapeHTML(v.Judul||"")}</div>
+      </div>
+    `;
 
-  <div class="main-feed" id="mainFeed"></div>
-  <div class="pagination" id="pagination"></div>
+    item.onclick=()=>{
+      if(activeVideo){
+        activeVideo.muted=!activeVideo.muted;
+        activeVideo.play().catch(()=>{});
+      }
+    };
 
-  <script>
-    let rawVideos = [];
-    let filteredVideos = [];
-    
-    // AMBIL DATA DARI MEMORI (Jika ada)
-    let currentPage = parseInt(sessionStorage.getItem('sv_page')) || 1;
-    let currentFilter = sessionStorage.getItem('sv_filter') || 'latest';
-    
-    const itemsPerPage = 6; 
+    frag.appendChild(item);
+  });
 
-    // Intersection Observer untuk Lazy Load
-    const videoObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const video = entry.target;
-          const source = video.querySelector('source');
-          if (source.dataset.src) {
-            source.src = source.dataset.src;
-            video.load();
-            video.preload = "metadata";
-          }
-          observer.unobserve(video);
+  feed.appendChild(frag);
+
+  observeItems();
+}
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const item=entry.target;
+    const video=item.querySelector("video");
+    const index=+item.dataset.index;
+
+    if(entry.isIntersecting && entry.intersectionRatio>=.6){
+      loadVideo(video,index);
+      playVideo(video);
+
+      // preload video berikutnya
+      if(videos[index+1]){
+        const next=item.nextElementSibling;
+        if(next) loadVideo(next.querySelector("video"),index+1);
+      }
+    }else{
+      video.pause();
+
+      // Hapus source video yang jauh agar RAM tidak penuh
+      if(entry.intersectionRatio===0){
+        const rect=item.getBoundingClientRect();
+
+        if(Math.abs(rect.top)>window.innerHeight*2){
+          video.removeAttribute("src");
+          video.load();
+          video.dataset.loaded="";
         }
-      });
-    }, { rootMargin: "300px" });
-
-    // Load Data
-    fetch('videos.json')
-      .then(res => res.json())
-      .then(data => {
-        rawVideos = data;
-        applyFilterAndRender(false); // false = gunakan currentPage yang tersimpan
-      })
-      .catch(() => {
-        console.error("Gagal memuat videos.json");
-      });
-
-    function applyFilterAndRender(resetPage = true) {
-      if (resetPage) currentPage = 1;
-      
-      // Update Tab UI
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(`btn-${currentFilter}`).classList.add('active');
-
-      // Simpan Filter ke Memori
-      sessionStorage.setItem('sv_filter', currentFilter);
-
-      // Sorting: Terbaru = JSON bawah ke atas
-      filteredVideos = currentFilter === 'latest' ? [...rawVideos].reverse() : [...rawVideos];
-      
-      renderPage(currentPage);
-    }
-
-    function setFilter(type) {
-      currentFilter = type;
-      applyFilterAndRender(true);
-    }
-
-    function renderPage(page) {
-      currentPage = page;
-      // Simpan Halaman ke Memori
-      sessionStorage.setItem('sv_page', page);
-
-      const container = document.getElementById("mainFeed");
-      container.innerHTML = "";
-
-      const start = (page - 1) * itemsPerPage;
-      const dataToShow = filteredVideos.slice(start, start + itemsPerPage);
-
-      dataToShow.forEach(video => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div class="video-container loading-shimmer">
-            <video class="thumbnail-preview" muted playsinline preload="none">
-              <source data-src="${video.Url}#t=0.5" type="video/mp4">
-            </video>
-          </div>
-          <div class="card-info">
-            <div class="card-title">${video.Judul}</div>
-          </div>
-        `;
-
-        const v = card.querySelector('video');
-        videoObserver.observe(v);
-
-        v.onloadedmetadata = function() {
-          this.classList.add('loaded');
-          this.parentElement.classList.remove('loading-shimmer');
-          const ratio = this.videoWidth / this.videoHeight;
-          if (ratio < 1) {
-            card.style.gridRowEnd = "span 2";
-            this.parentElement.style.aspectRatio = "9/16";
-          }
-        };
-
-        card.onclick = () => {
-            window.location.href = `detail.html?id=${video.id}`;
-        };
-        container.appendChild(card);
-      });
-
-      renderPagination();
-    }
-
-    function renderPagination() {
-      const nav = document.getElementById("pagination");
-      nav.innerHTML = "";
-      const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
-      if (totalPages <= 1) return;
-
-      const maxVisible = 10;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
-      if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
-
-      if (currentPage > 1) {
-        nav.innerHTML += `<button class="page-btn" onclick="renderPage(${currentPage - 1})">❮</button>`;
-      }
-
-      for (let i = startPage; i <= endPage; i++) {
-        const activeClass = i === currentPage ? 'active' : '';
-        nav.innerHTML += `<button class="page-btn ${activeClass}" onclick="renderPage(${i})">${i}</button>`;
-      }
-
-      if (currentPage < totalPages) {
-        nav.innerHTML += `<button class="page-btn" onclick="renderPage(${currentPage + 1})">❯</button>`;
       }
     }
+  });
+},{
+  threshold:[0,.6,1]
+});
 
-    function toggleSearch() {
-      const box = document.getElementById("searchBox");
-      box.style.display = box.style.display === "block" ? "none" : "block";
-    }
+function observeItems(){
+  document.querySelectorAll(".item").forEach(item=>{
+    observer.observe(item);
+  });
+}
 
-    document.getElementById("searchInput").addEventListener("input", function() {
-      const val = this.value.toLowerCase();
-      filteredVideos = rawVideos.filter(v => v.Judul.toLowerCase().includes(val));
-      if(currentFilter === 'latest') filteredVideos.reverse();
-      renderPage(1);
-    });
-  </script>
-</body>
+function loadVideo(video,index){
+  if(video.dataset.loaded==="1" || loading.has(index)) return;
+
+  loading.add(index);
+
+  video.src=videos[index].Url;
+  video.dataset.loaded="1";
+  video.load();
+
+  video.addEventListener("loadeddata",()=>{
+    loading.delete(index);
+    const box=video.parentElement.querySelector(".loading");
+    if(box) box.style.display="none";
+  },{once:true});
+}
+
+function playVideo(video){
+  if(activeVideo && activeVideo!==video){
+    activeVideo.pause();
+  }
+
+  activeVideo=video;
+
+  video.play().catch(()=>{
+    // autoplay gagal, tetap aman karena video muted
+  });
+}
+
+function escapeHTML(str){
+  return String(str)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+// Klik sekali untuk mute/unmute
+document.addEventListener("click",e=>{
+  const video=e.target.closest("video");
+  if(!video) return;
+
+  video.muted=!video.muted;
+});
+
+// Pastikan video aktif setelah kembali ke tab
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden && activeVideo){
+    activeVideo.play().catch(()=>{});
+  }
+});
+</script></body>
 </html>
