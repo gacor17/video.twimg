@@ -1,24 +1,41 @@
 <!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>STREAMVID</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet"><style>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>STREAMVID</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-MZYTMKBRT1"></script><script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());
+gtag('config','G-MZYTMKBRT1');
+</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet"><style>
 *{box-sizing:border-box}
-html,body{margin:0;background:#000;color:#fff;font-family:Inter,sans-serif}
-body{overflow:hidden}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  color:#fff;
+  font-family:Inter,sans-serif;
+  overflow:hidden;
+}
 
 .feed{
   width:100%;
   height:100vh;
   overflow-y:auto;
   scroll-snap-type:y mandatory;
+  scroll-behavior:auto;
+  overscroll-behavior-y:contain;
   scrollbar-width:none;
 }
+
 .feed::-webkit-scrollbar{display:none}
 
 .item{
   width:100%;
   height:100vh;
+  height:100dvh;
   position:relative;
   scroll-snap-align:start;
   scroll-snap-stop:always;
@@ -38,9 +55,9 @@ video{
 .info{
   position:absolute;
   left:15px;
-  right:70px;
+  right:60px;
   bottom:25px;
-  z-index:5;
+  z-index:4;
   pointer-events:none;
   text-shadow:0 1px 5px #000;
 }
@@ -51,20 +68,38 @@ video{
   line-height:1.4;
 }
 
+.top{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:10;
+  padding:14px 15px;
+  pointer-events:none;
+  background:linear-gradient(#000b,transparent);
+}
+
+.logo{
+  font-size:21px;
+  font-weight:800;
+}
+
+.logo span{color:orange}
+
 .loading{
   position:absolute;
   inset:0;
+  z-index:2;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#111;
-  z-index:2;
+  background:#000;
 }
 
 .spinner{
-  width:35px;
-  height:35px;
-  border:3px solid #555;
+  width:34px;
+  height:34px;
+  border:3px solid #444;
   border-top-color:#fff;
   border-radius:50%;
   animation:spin .7s linear infinite;
@@ -74,23 +109,16 @@ video{
   to{transform:rotate(360deg)}
 }
 
-.top{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:20;
-  padding:15px;
-  background:linear-gradient(#000b,transparent);
-  pointer-events:none;
+.error{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#aaa;
+  font-size:14px;
+  z-index:3;
 }
-
-.logo{
-  font-size:21px;
-  font-weight:800;
-}
-
-.logo span{color:orange}
 
 .empty{
   height:100vh;
@@ -104,123 +132,239 @@ video{
 </div><div class="feed" id="feed">
   <div class="empty">Memuat video...</div>
 </div><script>
-let videos=[];
-let activeVideo=null;
-let loading=new Set();
-
 const feed=document.getElementById("feed");
 
+let videos=[];
+let active=null;
+let currentIndex=-1;
+let loading=new Set();
+
 fetch("videos.json")
-.then(r=>r.json())
+.then(r=>{
+  if(!r.ok)throw Error();
+  return r.json();
+})
 .then(data=>{
   videos=data.reverse();
   feed.innerHTML="";
-  render();
+  buildFeed();
 })
 .catch(()=>{
   feed.innerHTML='<div class="empty">Gagal memuat video</div>';
 });
 
-function render(){
+
+/* BUAT FEED */
+function buildFeed(){
+
   const frag=document.createDocumentFragment();
 
   videos.forEach((v,i)=>{
-    const item=document.createElement("div");
+
+    const item=document.createElement("section");
     item.className="item";
     item.dataset.index=i;
 
     item.innerHTML=`
-      <div class="loading"><div class="spinner"></div></div>
-      <video muted playsinline loop preload="none"></video>
+      <div class="loading">
+        <div class="spinner"></div>
+      </div>
+
+      <video
+        muted
+        playsinline
+        loop
+        preload="none">
+      </video>
+
       <div class="info">
-        <div class="title">${escapeHTML(v.Judul||"")}</div>
+        <div class="title">${safe(v.Judul||"")}</div>
       </div>
     `;
-
-    item.onclick=()=>{
-      if(activeVideo){
-        activeVideo.muted=!activeVideo.muted;
-        activeVideo.play().catch(()=>{});
-      }
-    };
 
     frag.appendChild(item);
   });
 
   feed.appendChild(frag);
 
-  observeItems();
+  observe();
 }
 
+
+/* OBSERVER */
 const observer=new IntersectionObserver(entries=>{
+
   entries.forEach(entry=>{
+
     const item=entry.target;
+    const index=Number(item.dataset.index);
     const video=item.querySelector("video");
-    const index=+item.dataset.index;
 
-    if(entry.isIntersecting && entry.intersectionRatio>=.6){
-      loadVideo(video,index);
-      playVideo(video);
+    if(entry.isIntersecting && entry.intersectionRatio>=0.65){
 
-      // preload video berikutnya
-      if(videos[index+1]){
-        const next=item.nextElementSibling;
-        if(next) loadVideo(next.querySelector("video"),index+1);
-      }
+      activate(item,index,video);
+
+      /* SIAPKAN VIDEO BERIKUTNYA */
+      preload(index+1);
+
+      /* SIAPKAN VIDEO SEBELUMNYA */
+      preload(index-1);
+
     }else{
+
       video.pause();
 
-      // Hapus source video yang jauh agar RAM tidak penuh
-      if(entry.intersectionRatio===0){
-        const rect=item.getBoundingClientRect();
+      /*
+       * Video yang sangat jauh dilepas
+       * agar RAM tidak terus bertambah.
+       */
+      if(!entry.isIntersecting){
 
-        if(Math.abs(rect.top)>window.innerHeight*2){
-          video.removeAttribute("src");
-          video.load();
-          video.dataset.loaded="";
+        const distance=Math.abs(index-currentIndex);
+
+        if(distance>2){
+          unload(video,item);
         }
       }
     }
   });
+
 },{
-  threshold:[0,.6,1]
+  threshold:[0,.65,1]
 });
 
-function observeItems(){
+
+function observe(){
   document.querySelectorAll(".item").forEach(item=>{
     observer.observe(item);
   });
 }
 
-function loadVideo(video,index){
-  if(video.dataset.loaded==="1" || loading.has(index)) return;
+
+/* AKTIFKAN VIDEO */
+function activate(item,index,video){
+
+  if(currentIndex===index && active===video){
+    video.play().catch(()=>{});
+    return;
+  }
+
+  if(active && active!==video){
+    active.pause();
+  }
+
+  currentIndex=index;
+  active=video;
+
+  load(video,index,()=>{
+    video.play().catch(()=>{});
+  });
+}
+
+
+/* LOAD VIDEO */
+function load(video,index,callback){
+
+  if(index<0 || index>=videos.length)return;
+
+  if(video.dataset.loaded==="1"){
+
+    if(callback)callback();
+    return;
+  }
+
+  if(loading.has(index)){
+
+    video.addEventListener("canplay",()=>{
+      if(callback)callback();
+    },{once:true});
+
+    return;
+  }
 
   loading.add(index);
 
   video.src=videos[index].Url;
   video.dataset.loaded="1";
-  video.load();
 
   video.addEventListener("loadeddata",()=>{
+
     loading.delete(index);
-    const box=video.parentElement.querySelector(".loading");
-    if(box) box.style.display="none";
+
+    const loader=video.parentElement.querySelector(".loading");
+
+    if(loader)loader.style.display="none";
+
   },{once:true});
-}
 
-function playVideo(video){
-  if(activeVideo && activeVideo!==video){
-    activeVideo.pause();
+  video.addEventListener("error",()=>{
+
+    loading.delete(index);
+
+    const loader=video.parentElement.querySelector(".loading");
+
+    if(loader)loader.innerHTML='<div class="error">Video gagal dimuat</div>';
+
+  },{once:true});
+
+  video.load();
+
+  if(callback){
+
+    if(video.readyState>=3){
+      callback();
+    }else{
+      video.addEventListener("canplay",()=>{
+        callback();
+      },{once:true});
+    }
   }
-
-  activeVideo=video;
-
-  video.play().catch(()=>{
-    // autoplay gagal, tetap aman karena video muted
-  });
 }
 
-function escapeHTML(str){
+
+/* PRELOAD VIDEO TERDEKAT */
+function preload(index){
+
+  if(index<0 || index>=videos.length)return;
+
+  const item=feed.querySelector(
+    `.item[data-index="${index}"]`
+  );
+
+  if(!item)return;
+
+  const video=item.querySelector("video");
+
+  if(video.dataset.loaded==="1")return;
+
+  load(video,index);
+}
+
+
+/* HAPUS VIDEO JAUH */
+function unload(video,item){
+
+  if(video===active)return;
+
+  video.pause();
+
+  video.removeAttribute("src");
+  video.load();
+
+  delete video.dataset.loaded;
+
+  const loader=item.querySelector(".loading");
+
+  if(loader){
+    loader.style.display="flex";
+    loader.innerHTML='<div class="spinner"></div>';
+  }
+}
+
+
+/* ESCAPE JUDUL */
+function safe(str){
+
   return String(str)
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -229,19 +373,45 @@ function escapeHTML(str){
     .replace(/'/g,"&#039;");
 }
 
-// Klik sekali untuk mute/unmute
-document.addEventListener("click",e=>{
+
+/* MUTE / UNMUTE */
+feed.addEventListener("click",e=>{
+
   const video=e.target.closest("video");
-  if(!video) return;
+
+  if(!video)return;
 
   video.muted=!video.muted;
+
 });
 
-// Pastikan video aktif setelah kembali ke tab
+
+/* KETIKA TAB KEMBALI */
 document.addEventListener("visibilitychange",()=>{
-  if(!document.hidden && activeVideo){
-    activeVideo.play().catch(()=>{});
+
+  if(!document.hidden && active){
+    active.play().catch(()=>{});
   }
+
 });
+
+
+/* KETIKA SELESAI SCROLL CEPAT */
+let scrollTimer;
+
+feed.addEventListener("scroll",()=>{
+
+  clearTimeout(scrollTimer);
+
+  scrollTimer=setTimeout(()=>{
+
+    if(active){
+      active.play().catch(()=>{});
+    }
+
+  },80);
+
+},{passive:true});
+
 </script></body>
 </html>
