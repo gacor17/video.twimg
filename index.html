@@ -1,264 +1,1643 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZYTMKBRT1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-MZYTMKBRT1');
-</script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZYTMKBRT1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MZYTMKBRT1');
+  </script>
 
   <script src='https://countyrecyclefailed.com/jwLQhP/S7I98rrxPtH/mIO9fDiVNLZMeP0OROq/H7E_/SGLNLxv3XorZo/VRxWxWDGKHS9/wxyWJVk1qZALX/tU50HpLksOI/T5QI6gZg/hXFBIBaZ-vd1SxD8/AtF48f9Ys/MrZ'></script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>STREAMVID</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    rel="stylesheet"
+  >
 
   <style>
-    body { margin: 0; background: #0f0f0f; font-family: 'Inter', sans-serif; color: #fff; scroll-behavior: smooth; }
-    
-    /* HEADER */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #0f0f0f;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
     .header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 20px; background: rgba(15,15,15,0.9);
-      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      height: 58px;
+      padding: 0 20px;
+
+      background: rgba(15, 15, 15, 0.94);
+      backdrop-filter: blur(10px);
+
+      position: sticky;
+      top: 0;
+
+      z-index: 100;
+
       border-bottom: 1px solid #303030;
     }
-    .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
 
-    /* FILTER TABS */
-    .filter-tabs { display: flex; gap: 10px; padding: 15px 20px; overflow-x: auto; }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      user-select: none;
+    }
+
+    .search-button {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      border-radius: 50%;
+    }
+
+    .search-button:active {
+      background: #222;
+    }
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+
+      padding: 15px 20px;
+
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
     .tab-btn {
-      padding: 8px 16px; background: #222; border: 1px solid #444;
-      border-radius: 20px; cursor: pointer; font-size: 13px; color: #ccc; transition: 0.2s;
-    }
-    .tab-btn.active { background: orange; color: #000; font-weight: 700; border-color: orange; }
+      flex: 0 0 auto;
 
-    /* SEARCH */
-    .search-box { display: none; padding: 10px 20px; }
+      padding: 8px 16px;
+
+      background: #222;
+      border: 1px solid #444;
+
+      border-radius: 20px;
+
+      cursor: pointer;
+
+      font-size: 13px;
+      color: #ccc;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+
+      user-select: none;
+    }
+
+    .tab-btn.active {
+      background: orange;
+      color: #000;
+      font-weight: 700;
+      border-color: orange;
+    }
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    .search-box {
+      display: none;
+      padding: 5px 20px 15px;
+    }
+
     .search-wrapper {
-      display: flex; background: #1a1a1a; border: 1px solid #333;
-      border-radius: 8px; padding: 5px 12px;
-    }
-    .search-wrapper input { flex: 1; background: transparent; border: none; color: #fff; outline: none; padding: 8px; }
+      display: flex;
 
-    /* GRID OPTIMIZED */
+      background: #1a1a1a;
+
+      border: 1px solid #333;
+      border-radius: 8px;
+
+      padding: 5px 12px;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+
+      flex: 1;
+
+      background: transparent;
+      border: none;
+      outline: none;
+
+      color: #fff;
+
+      padding: 8px;
+
+      font-size: 14px;
+    }
+
+    .search-wrapper input::placeholder {
+      color: #777;
+    }
+
+    /* =========================
+       MAIN GRID
+    ========================= */
+
     .main-feed {
-      padding: 15px; display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px; grid-auto-flow: dense;
+
+      padding: 15px;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 12px;
+
+      grid-auto-flow: dense;
+
+      align-items: start;
     }
 
     @media (min-width: 600px) {
-      .main-feed { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+      .main-feed {
+        grid-template-columns:
+          repeat(auto-fill, minmax(260px, 1fr));
+      }
+
     }
 
-    /* CARD & SKELETON */
+    /* =========================
+       CARD
+    ========================= */
+
     .card {
-      background: #161616; border-radius: 10px; overflow: hidden;
-      cursor: pointer; border: 1px solid #222; transition: 0.2s;
-    }
-    .card:active { transform: scale(0.96); }
-    
-    .video-container {
-      width: 100%; background: #222;
-      display: flex; position: relative;
-      aspect-ratio: 16/9;
+
+      background: #161616;
+
+      border-radius: 10px;
+
       overflow: hidden;
+
+      cursor: pointer;
+
+      border: 1px solid #222;
+
+      /* Penting untuk performa */
+      content-visibility: auto;
+
+      contain-intrinsic-size: 300px 210px;
+
+      transform: translateZ(0);
+
+      will-change: transform;
+
+      transition: transform .15s ease;
     }
+
+    .card:active {
+      transform: scale(.97);
+    }
+
+    /* =========================
+       VIDEO CONTAINER
+    ========================= */
+
+    .video-container {
+
+      width: 100%;
+
+      background: #222;
+
+      display: flex;
+
+      position: relative;
+
+      aspect-ratio: 16 / 9;
+
+      overflow: hidden;
+
+      contain: layout paint;
+    }
+
+    /*
+      Portrait video akan diubah ke 9:16
+      oleh Javascript setelah metadata tersedia.
+    */
+
+    .video-container.portrait {
+      aspect-ratio: 9 / 16;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
 
     .loading-shimmer {
-      background: linear-gradient(90deg, #161616 25%, #222 50%, #161616 75%);
+
+      background:
+        linear-gradient(
+          90deg,
+          #161616 25%,
+          #252525 50%,
+          #161616 75%
+        );
+
       background-size: 200% 100%;
+
       animation: shimmer 1.5s infinite;
     }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    @keyframes shimmer {
+
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+
+    }
+
+    /* =========================
+       VIDEO
+    ========================= */
 
     video.thumbnail-preview {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0; transition: opacity 0.5s ease;
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      opacity: 0;
+
+      transition: opacity .25s ease;
+
+      background: #222;
+
+      /*
+        Jangan menggunakan autoplay.
+        Ini mengurangi beban CPU.
+      */
     }
-    video.loaded { opacity: 1; }
 
-    .card-info { padding: 10px; }
-    .card-title { font-size: 13px; font-weight: 600; line-height: 1.4; height: 36px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    video.thumbnail-preview.loaded {
+      opacity: 1;
+    }
 
-    /* PAGINATION */
-    .pagination { display: flex; justify-content: center; gap: 5px; padding: 20px 10px 60px; flex-wrap: wrap; }
+    /* =========================
+       CARD INFO
+    ========================= */
+
+    .card-info {
+      padding: 10px;
+    }
+
+    .card-title {
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      line-height: 1.4;
+
+      height: 36px;
+
+      overflow: hidden;
+
+      display: -webkit-box;
+
+      -webkit-line-clamp: 2;
+
+      -webkit-box-orient: vertical;
+    }
+
+    /* =========================
+       PAGINATION
+    ========================= */
+
+    .pagination {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 5px;
+
+      padding: 20px 10px 60px;
+
+      flex-wrap: wrap;
+    }
+
     .page-btn {
-      min-width: 38px; height: 38px; display: flex; align-items: center;
-      justify-content: center; background: #1a1a1a; border: 1px solid #333;
-      border-radius: 8px; cursor: pointer; font-size: 14px; color: #fff;
+
+      min-width: 38px;
+      height: 38px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background: #1a1a1a;
+
+      border: 1px solid #333;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 14px;
+
+      color: #fff;
+
+      transition: .15s ease;
     }
-    .page-btn.active { background: orange; color: #000; font-weight: bold; border-color: orange; }
+
+    .page-btn:hover {
+      background: #292929;
+    }
+
+    .page-btn.active {
+
+      background: orange;
+
+      color: #000;
+
+      font-weight: bold;
+
+      border-color: orange;
+    }
+
+    /* =========================
+       EMPTY / ERROR
+    ========================= */
+
+    .message {
+
+      grid-column: 1 / -1;
+
+      text-align: center;
+
+      padding: 60px 20px;
+
+      color: #888;
+
+      font-size: 14px;
+    }
+
   </style>
+
 </head>
+
 <body>
 
+  <!-- HEADER -->
+
   <header class="header">
-    <div class="logo">STREAM<span style="color:orange;">VID</span></div>
-    <div onclick="toggleSearch()" style="cursor:pointer"><span class="material-symbols-outlined">search</span></div>
+
+    <div class="logo">
+      STREAM<span style="color:orange;">VID</span>
+    </div>
+
+    <div
+      class="search-button"
+      onclick="toggleSearch()"
+      aria-label="Cari"
+    >
+      <span class="material-symbols-outlined">
+        search
+      </span>
+    </div>
+
   </header>
 
+
+  <!-- FILTER -->
+
   <div class="filter-tabs">
-    <div class="tab-btn" id="btn-latest" onclick="setFilter('latest')">Video Terbaru</div>
-    <div class="tab-btn" id="btn-all" onclick="setFilter('all')">Semua Video</div>
+
+    <div
+      class="tab-btn"
+      id="btn-latest"
+      onclick="setFilter('latest')"
+    >
+      Video Terbaru
+    </div>
+
+    <div
+      class="tab-btn"
+      id="btn-all"
+      onclick="setFilter('all')"
+    >
+      Semua Video
+    </div>
+
   </div>
 
-  <div class="search-box" id="searchBox">
-    <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Cari judul..."></div>
+
+  <!-- SEARCH -->
+
+  <div
+    class="search-box"
+    id="searchBox"
+  >
+
+    <div class="search-wrapper">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari judul..."
+        autocomplete="off"
+      >
+
+    </div>
+
   </div>
 
-  <div class="main-feed" id="mainFeed"></div>
-  <div class="pagination" id="pagination"></div>
+
+  <!-- VIDEO GRID -->
+
+  <main
+    class="main-feed"
+    id="mainFeed"
+  ></main>
+
+
+  <!-- PAGINATION -->
+
+  <div
+    class="pagination"
+    id="pagination"
+  ></div>
+
 
   <script>
+
+    /* =====================================================
+       DATA
+    ===================================================== */
+
     let rawVideos = [];
+
     let filteredVideos = [];
-    
-    // AMBIL DATA DARI MEMORI (Jika ada)
-    let currentPage = parseInt(sessionStorage.getItem('sv_page')) || 1;
-    let currentFilter = sessionStorage.getItem('sv_filter') || 'latest';
-    
-    const itemsPerPage = 6; 
 
-    // Intersection Observer untuk Lazy Load
-    const videoObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const video = entry.target;
-          const source = video.querySelector('source');
-          if (source.dataset.src) {
-            source.src = source.dataset.src;
-            video.load();
-            video.preload = "metadata";
-          }
-          observer.unobserve(video);
+
+    /* =====================================================
+       SESSION
+    ===================================================== */
+
+    let currentPage =
+      parseInt(
+        sessionStorage.getItem('sv_page')
+      ) || 1;
+
+    let currentFilter =
+      sessionStorage.getItem('sv_filter')
+      || 'latest';
+
+
+    /* =====================================================
+       JUMLAH VIDEO PER HALAMAN
+       
+       60 VIDEO = JAUH LEBIH BANYAK BARIS
+       
+       Browser TIDAK akan langsung load semua video.
+    ===================================================== */
+
+    const itemsPerPage = 60;
+
+
+    /* =====================================================
+       VIDEO LAZY LOAD
+       
+       Video hanya load ketika mendekati viewport.
+    ===================================================== */
+
+    const videoObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(entry => {
+
+            const video = entry.target;
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            loadVideo(video);
+
+            observer.unobserve(video);
+
+          });
+
+        },
+        {
+          /*
+            Tidak perlu terlalu jauh.
+
+            150px cukup untuk membuat video
+            mulai diproses sebelum terlihat.
+          */
+
+          rootMargin: "150px 0px",
+
+          threshold: 0
         }
-      });
-    }, { rootMargin: "300px" });
+      );
 
-    // Load Data
-    fetch('videos.json')
-      .then(res => res.json())
-      .then(data => {
-        rawVideos = data;
-        applyFilterAndRender(false); // false = gunakan currentPage yang tersimpan
-      })
-      .catch(() => {
-        console.error("Gagal memuat videos.json");
-      });
 
-    function applyFilterAndRender(resetPage = true) {
-      if (resetPage) currentPage = 1;
-      
-      // Update Tab UI
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(`btn-${currentFilter}`).classList.add('active');
+    /* =====================================================
+       VIDEO UNLOAD OBSERVER
+       
+       Video yang terlalu jauh dari layar akan dibersihkan.
+       
+       Ini penting kalau 60 video ada dalam satu halaman.
+    ===================================================== */
 
-      // Simpan Filter ke Memori
-      sessionStorage.setItem('sv_filter', currentFilter);
+    const unloadObserver =
+      new IntersectionObserver(
+        (entries) => {
 
-      // Sorting: Terbaru = JSON bawah ke atas
-      filteredVideos = currentFilter === 'latest' ? [...rawVideos].reverse() : [...rawVideos];
-      
-      renderPage(currentPage);
+          entries.forEach(entry => {
+
+            const video = entry.target;
+
+            if (
+              !entry.isIntersecting &&
+              video.dataset.loaded === "true"
+            ) {
+
+              /*
+                Hanya unload jika cukup jauh
+                dari viewport.
+              */
+
+              const rect =
+                entry.boundingClientRect;
+
+              const farAbove =
+                rect.bottom < -800;
+
+              const farBelow =
+                rect.top > window.innerHeight + 800;
+
+              if (farAbove || farBelow) {
+                unloadVideo(video);
+              }
+
+            }
+
+          });
+
+        },
+        {
+          rootMargin: "800px 0px",
+          threshold: 0
+        }
+      );
+
+
+    /* =====================================================
+       LOAD VIDEO
+    ===================================================== */
+
+    function loadVideo(video) {
+
+      if (
+        video.dataset.loaded === "true"
+      ) {
+        return;
+      }
+
+      const source =
+        video.querySelector("source");
+
+      if (!source) {
+        return;
+      }
+
+      const url =
+        source.dataset.src;
+
+      if (!url) {
+        return;
+      }
+
+      /*
+        Tandai sebagai sedang diproses.
+      */
+
+      video.dataset.loaded = "loading";
+
+      /*
+        preload metadata saja.
+        Tidak download seluruh video.
+      */
+
+      video.preload = "metadata";
+
+      /*
+        Pasang URL sebenarnya.
+      */
+
+      source.src = url;
+
+      /*
+        Load metadata.
+      */
+
+      video.load();
+
     }
+
+
+    /* =====================================================
+       UNLOAD VIDEO
+    ===================================================== */
+
+    function unloadVideo(video) {
+
+      /*
+        Jangan unload kalau sedang terlihat.
+      */
+
+      const rect =
+        video.getBoundingClientRect();
+
+      const visible =
+        rect.bottom > 0 &&
+        rect.top < window.innerHeight;
+
+      if (visible) {
+        return;
+      }
+
+      const source =
+        video.querySelector("source");
+
+      if (!source) {
+        return;
+      }
+
+      /*
+        Simpan URL asli.
+
+        Kalau source.src sudah berubah,
+        dataset.src tetap menyimpan URL awal.
+      */
+
+      try {
+        video.pause();
+      } catch (e) {}
+
+      /*
+        Hapus source aktif.
+      */
+
+      source.removeAttribute("src");
+
+      /*
+        Reset video.
+      */
+
+      video.removeAttribute("src");
+
+      /*
+        Jangan load lagi sekarang.
+      */
+
+      video.load();
+
+      /*
+        Reset status.
+      */
+
+      video.dataset.loaded = "false";
+
+      /*
+        Hilangkan class loaded.
+      */
+
+      video.classList.remove("loaded");
+
+      /*
+        Kembali ke shimmer.
+      */
+
+      const container =
+        video.parentElement;
+
+      if (container) {
+        container.classList.add(
+          "loading-shimmer"
+        );
+      }
+
+    }
+
+
+    /* =====================================================
+       VIDEO METADATA
+    ===================================================== */
+
+    function setupVideo(video, card) {
+
+      video.addEventListener(
+        "loadedmetadata",
+        function() {
+
+          /*
+            Metadata sudah berhasil dibaca.
+          */
+
+          video.dataset.loaded = "true";
+
+          video.classList.add("loaded");
+
+          const container =
+            video.parentElement;
+
+          if (container) {
+
+            container.classList.remove(
+              "loading-shimmer"
+            );
+
+          }
+
+          /*
+            Cek portrait.
+          */
+
+          if (
+            this.videoWidth > 0 &&
+            this.videoHeight > 0
+          ) {
+
+            const ratio =
+              this.videoWidth /
+              this.videoHeight;
+
+            if (ratio < 1) {
+
+              if (container) {
+                container.classList.add(
+                  "portrait"
+                );
+              }
+
+            }
+
+          }
+
+        },
+        {
+          once: false,
+          passive: true
+        }
+      );
+
+
+      /*
+        Jika gagal load,
+        jangan membuat halaman crash.
+      */
+
+      video.addEventListener(
+        "error",
+        function() {
+
+          video.dataset.loaded = "false";
+
+          const container =
+            video.parentElement;
+
+          if (container) {
+            container.classList.add(
+              "loading-shimmer"
+            );
+          }
+
+        },
+        {
+          passive: true
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       CREATE CARD
+    ===================================================== */
+
+    function createCard(videoData) {
+
+      const card =
+        document.createElement("div");
+
+      card.className = "card";
+
+
+      /* =========================
+         VIDEO CONTAINER
+      ========================= */
+
+      const videoContainer =
+        document.createElement("div");
+
+      videoContainer.className =
+        "video-container loading-shimmer";
+
+
+      /* =========================
+         VIDEO
+      ========================= */
+
+      const video =
+        document.createElement("video");
+
+      video.className =
+        "thumbnail-preview";
+
+      video.muted = true;
+
+      video.playsInline = true;
+
+      /*
+        Tidak autoplay.
+        Tidak preload video.
+      */
+
+      video.preload = "none";
+
+      video.dataset.loaded = "false";
+
+
+      /* =========================
+         SOURCE
+      ========================= */
+
+      const source =
+        document.createElement("source");
+
+      /*
+        URL disimpan di data-src.
+
+        Browser belum mengetahui URL
+        video sebelum observer memanggil
+        loadVideo().
+      */
+
+      source.dataset.src =
+        String(videoData.Url || "")
+        + "#t=0.5";
+
+      source.type = "video/mp4";
+
+
+      video.appendChild(source);
+
+      videoContainer.appendChild(video);
+
+
+      /* =========================
+         INFO
+      ========================= */
+
+      const info =
+        document.createElement("div");
+
+      info.className =
+        "card-info";
+
+
+      const title =
+        document.createElement("div");
+
+      title.className =
+        "card-title";
+
+      /*
+        textContent lebih aman daripada
+        innerHTML.
+      */
+
+      title.textContent =
+        videoData.Judul || "Tanpa Judul";
+
+
+      info.appendChild(title);
+
+
+      /* =========================
+         CARD
+      ========================= */
+
+      card.appendChild(videoContainer);
+
+      card.appendChild(info);
+
+
+      /* =========================
+         VIDEO EVENT
+      ========================= */
+
+      setupVideo(video, card);
+
+
+      /*
+        Lazy load observer.
+      */
+
+      videoObserver.observe(video);
+
+
+      /*
+        Unload observer.
+      */
+
+      unloadObserver.observe(video);
+
+
+      /* =========================
+         CLICK
+      ========================= */
+
+      card.addEventListener(
+        "click",
+        function() {
+
+          window.location.href =
+            "detail.html?id=" +
+            encodeURIComponent(
+              videoData.id
+            );
+
+        }
+      );
+
+
+      return card;
+
+    }
+
+
+    /* =====================================================
+       LOAD DATA
+    ===================================================== */
+
+    fetch("videos.json", {
+      cache: "default"
+    })
+
+      .then(response => {
+
+        if (!response.ok) {
+          throw new Error(
+            "HTTP " + response.status
+          );
+        }
+
+        return response.json();
+
+      })
+
+      .then(data => {
+
+        if (!Array.isArray(data)) {
+          throw new Error(
+            "Format videos.json harus array"
+          );
+        }
+
+        rawVideos = data;
+
+        /*
+          Pastikan halaman tersimpan
+          masih valid.
+        */
+
+        applyFilterAndRender(false);
+
+      })
+
+      .catch(error => {
+
+        console.error(
+          "Gagal memuat videos.json:",
+          error
+        );
+
+        const container =
+          document.getElementById(
+            "mainFeed"
+          );
+
+        container.innerHTML =
+          '<div class="message">' +
+          'Gagal memuat daftar video.' +
+          '</div>';
+
+      });
+
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
+
+    function applyFilterAndRender(
+      resetPage = true
+    ) {
+
+      if (resetPage) {
+        currentPage = 1;
+      }
+
+
+      /*
+        Update tab.
+      */
+
+      document
+        .querySelectorAll(".tab-btn")
+        .forEach(button => {
+
+          button.classList.remove(
+            "active"
+          );
+
+        });
+
+
+      const activeButton =
+        document.getElementById(
+          "btn-" + currentFilter
+        );
+
+
+      if (activeButton) {
+        activeButton.classList.add(
+          "active"
+        );
+      }
+
+
+      /*
+        Simpan filter.
+      */
+
+      sessionStorage.setItem(
+        "sv_filter",
+        currentFilter
+      );
+
+
+      /*
+        Sorting.
+
+        latest = JSON dari bawah ke atas.
+      */
+
+      if (currentFilter === "latest") {
+
+        filteredVideos =
+          [...rawVideos].reverse();
+
+      } else {
+
+        filteredVideos =
+          [...rawVideos];
+
+      }
+
+
+      /*
+        Pastikan halaman tidak melebihi
+        jumlah halaman.
+      */
+
+      const totalPages =
+        Math.max(
+          1,
+          Math.ceil(
+            filteredVideos.length /
+            itemsPerPage
+          )
+        );
+
+
+      if (currentPage > totalPages) {
+        currentPage = totalPages;
+      }
+
+
+      renderPage(currentPage);
+
+    }
+
+
+    /* =====================================================
+       SET FILTER
+    ===================================================== */
 
     function setFilter(type) {
+
       currentFilter = type;
+
       applyFilterAndRender(true);
+
     }
+
+
+    /* =====================================================
+       RENDER PAGE
+    ===================================================== */
 
     function renderPage(page) {
+
+      /*
+        Pastikan page valid.
+      */
+
+      page =
+        Math.max(
+          1,
+          parseInt(page) || 1
+        );
+
+
       currentPage = page;
-      // Simpan Halaman ke Memori
-      sessionStorage.setItem('sv_page', page);
 
-      const container = document.getElementById("mainFeed");
-      container.innerHTML = "";
 
-      const start = (page - 1) * itemsPerPage;
-      const dataToShow = filteredVideos.slice(start, start + itemsPerPage);
+      /*
+        Simpan halaman.
+      */
 
-      dataToShow.forEach(video => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div class="video-container loading-shimmer">
-            <video class="thumbnail-preview" muted playsinline preload="none">
-              <source data-src="${video.Url}#t=0.5" type="video/mp4">
-            </video>
-          </div>
-          <div class="card-info">
-            <div class="card-title">${video.Judul}</div>
-          </div>
-        `;
+      sessionStorage.setItem(
+        "sv_page",
+        String(page)
+      );
 
-        const v = card.querySelector('video');
-        videoObserver.observe(v);
 
-        v.onloadedmetadata = function() {
-          this.classList.add('loaded');
-          this.parentElement.classList.remove('loading-shimmer');
-          const ratio = this.videoWidth / this.videoHeight;
-          if (ratio < 1) {
-            card.style.gridRowEnd = "span 2";
-            this.parentElement.style.aspectRatio = "9/16";
-          }
-        };
+      const container =
+        document.getElementById(
+          "mainFeed"
+        );
 
-        card.onclick = () => {
-            window.location.href = `detail.html?id=${video.id}`;
-        };
-        container.appendChild(card);
-      });
+
+      /*
+        Kosongkan grid.
+      */
+
+      container.replaceChildren();
+
+
+      /*
+        Hitung data.
+      */
+
+      const start =
+        (page - 1) *
+        itemsPerPage;
+
+
+      const dataToShow =
+        filteredVideos.slice(
+          start,
+          start + itemsPerPage
+        );
+
+
+      /*
+        Jika kosong.
+      */
+
+      if (dataToShow.length === 0) {
+
+        const message =
+          document.createElement("div");
+
+        message.className =
+          "message";
+
+        message.textContent =
+          "Tidak ada video.";
+
+        container.appendChild(
+          message
+        );
+
+        renderPagination();
+
+        return;
+      }
+
+
+      /*
+        Buat semua card.
+
+        Walaupun 60 card dibuat,
+        video TIDAK otomatis di-load.
+
+        Hanya video dekat viewport
+        yang akan masuk network.
+      */
+
+      const fragment =
+        document.createDocumentFragment();
+
+
+      dataToShow.forEach(
+        videoData => {
+
+          fragment.appendChild(
+            createCard(videoData)
+          );
+
+        }
+      );
+
+
+      container.appendChild(
+        fragment
+      );
+
 
       renderPagination();
+
     }
+
+
+    /* =====================================================
+       PAGINATION
+    ===================================================== */
 
     function renderPagination() {
-      const nav = document.getElementById("pagination");
-      nav.innerHTML = "";
-      const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
-      if (totalPages <= 1) return;
+
+      const nav =
+        document.getElementById(
+          "pagination"
+        );
+
+
+      nav.replaceChildren();
+
+
+      const totalPages =
+        Math.ceil(
+          filteredVideos.length /
+          itemsPerPage
+        );
+
+
+      if (totalPages <= 1) {
+        return;
+      }
+
 
       const maxVisible = 10;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
-      if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
+
+
+      let startPage =
+        Math.max(
+          1,
+          currentPage -
+          Math.floor(maxVisible / 2)
+        );
+
+
+      let endPage =
+        Math.min(
+          totalPages,
+          startPage +
+          maxVisible -
+          1
+        );
+
+
+      if (
+        endPage -
+        startPage +
+        1 <
+        maxVisible
+      ) {
+
+        startPage =
+          Math.max(
+            1,
+            endPage -
+            maxVisible +
+            1
+          );
+
+      }
+
+
+      /* =========================
+         PREVIOUS
+      ========================= */
 
       if (currentPage > 1) {
-        nav.innerHTML += `<button class="page-btn" onclick="renderPage(${currentPage - 1})">❮</button>`;
+
+        const button =
+          createPageButton(
+            "❮",
+            currentPage - 1
+          );
+
+        nav.appendChild(button);
+
       }
 
-      for (let i = startPage; i <= endPage; i++) {
-        const activeClass = i === currentPage ? 'active' : '';
-        nav.innerHTML += `<button class="page-btn ${activeClass}" onclick="renderPage(${i})">${i}</button>`;
+
+      /* =========================
+         NUMBER
+      ========================= */
+
+      for (
+        let i = startPage;
+        i <= endPage;
+        i++
+      ) {
+
+        const button =
+          createPageButton(
+            String(i),
+            i,
+            i === currentPage
+          );
+
+        nav.appendChild(button);
+
       }
 
-      if (currentPage < totalPages) {
-        nav.innerHTML += `<button class="page-btn" onclick="renderPage(${currentPage + 1})">❯</button>`;
+
+      /* =========================
+         NEXT
+      ========================= */
+
+      if (
+        currentPage <
+        totalPages
+      ) {
+
+        const button =
+          createPageButton(
+            "❯",
+            currentPage + 1
+          );
+
+        nav.appendChild(button);
+
       }
+
     }
+
+
+    /* =====================================================
+       CREATE PAGE BUTTON
+    ===================================================== */
+
+    function createPageButton(
+      text,
+      page,
+      active = false
+    ) {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.className =
+        "page-btn";
+
+      if (active) {
+        button.classList.add(
+          "active"
+        );
+      }
+
+      button.textContent = text;
+
+      button.type = "button";
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          renderPage(page);
+
+          /*
+            Kembali ke atas
+            secara halus.
+          */
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+        }
+      );
+
+      return button;
+
+    }
+
+
+    /* =====================================================
+       SEARCH TOGGLE
+    ===================================================== */
 
     function toggleSearch() {
-      const box = document.getElementById("searchBox");
-      box.style.display = box.style.display === "block" ? "none" : "block";
+
+      const box =
+        document.getElementById(
+          "searchBox"
+        );
+
+      if (
+        box.style.display ===
+        "block"
+      ) {
+
+        box.style.display =
+          "none";
+
+      } else {
+
+        box.style.display =
+          "block";
+
+        setTimeout(() => {
+
+          document
+            .getElementById(
+              "searchInput"
+            )
+            .focus();
+
+        }, 50);
+
+      }
+
     }
 
-    document.getElementById("searchInput").addEventListener("input", function() {
-      const val = this.value.toLowerCase();
-      filteredVideos = rawVideos.filter(v => v.Judul.toLowerCase().includes(val));
-      if(currentFilter === 'latest') filteredVideos.reverse();
-      renderPage(1);
-    });
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    const searchInput =
+      document.getElementById(
+        "searchInput"
+      );
+
+
+    searchInput.addEventListener(
+      "input",
+      function() {
+
+        const value =
+          this.value
+            .trim()
+            .toLowerCase();
+
+
+        /*
+          Kalau kosong,
+          kembali ke filter normal.
+        */
+
+        if (!value) {
+
+          applyFilterAndRender(true);
+
+          return;
+
+        }
+
+
+        /*
+          Cari berdasarkan judul.
+        */
+
+        filteredVideos =
+          rawVideos.filter(video => {
+
+            return String(
+              video.Judul || ""
+            )
+              .toLowerCase()
+              .includes(value);
+
+          });
+
+
+        /*
+          Latest = reverse.
+        */
+
+        if (
+          currentFilter ===
+          "latest"
+        ) {
+
+          filteredVideos.reverse();
+
+        }
+
+
+        /*
+          Search selalu halaman 1.
+        */
+
+        renderPage(1);
+
+      }
+    );
+
+
+    /* =====================================================
+       CLEANUP SAAT PINDAH HALAMAN
+       
+       Browser biasanya membersihkan DOM,
+       tapi kita juga membantu release video.
+    ===================================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      function() {
+
+        document
+          .querySelectorAll(
+            "video.thumbnail-preview"
+          )
+          .forEach(video => {
+
+            try {
+              video.pause();
+            } catch (e) {}
+
+          });
+
+      }
+    );
+
   </script>
+
 </body>
 </html>
