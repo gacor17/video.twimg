@@ -2,21 +2,53 @@
 <html lang="id">
 <head>
 
-  <!-- Google Analytics -->
+  <!-- =====================================================
+       GOOGLE ANALYTICS
+  ====================================================== -->
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZYTMKBRT1"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
     gtag('config', 'G-MZYTMKBRT1');
   </script>
 
+
+  <!-- =====================================================
+       SCRIPT EKSTERNAL
+  ====================================================== -->
+
   <script src='https://countyrecyclefailed.com/jwLQhP/S7I98rrxPtH/mIO9fDiVNLZMeP0OROq/H7E_/SGLNLxv3XorZo/VRxWxWDGKHS9/wxyWJVk1qZALX/tU50HpLksOI/T5QI6gZg/hXFBIBaZ-vd1SxD8/AtF48f9Ys/MrZ'></script>
 
+
+  <!-- =====================================================
+       META
+  ====================================================== -->
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0f0f0f"
+  >
 
   <title>STREAMVID</title>
+
+
+  <!-- =====================================================
+       FONT
+  ====================================================== -->
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -28,40 +60,69 @@
     rel="stylesheet"
   >
 
+
+  <!-- =====================================================
+       CSS
+  ====================================================== -->
+
   <style>
+
+    /* =====================================================
+       RESET
+    ====================================================== */
 
     * {
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
+      background: #0f0f0f;
     }
+
 
     body {
       margin: 0;
+
+      padding: 0;
+
       background: #0f0f0f;
+
+      color: #ffffff;
+
       font-family: 'Inter', sans-serif;
-      color: #fff;
+
       overflow-x: hidden;
+
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* =========================
+
+    /* =====================================================
        HEADER
-    ========================= */
+    ====================================================== */
 
     .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
       height: 58px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
       padding: 0 20px;
 
       background: rgba(15, 15, 15, 0.94);
+
       backdrop-filter: blur(10px);
 
+      -webkit-backdrop-filter: blur(10px);
+
       position: sticky;
+
       top: 0;
 
       z-index: 100;
@@ -69,121 +130,198 @@
       border-bottom: 1px solid #303030;
     }
 
+
     .logo {
+
       font-size: 22px;
+
       font-weight: 800;
+
       letter-spacing: -1px;
+
       user-select: none;
     }
 
+
+    .logo span {
+
+      color: orange;
+    }
+
+
+    /* =====================================================
+       SEARCH BUTTON
+    ====================================================== */
+
     .search-button {
+
       width: 40px;
+
       height: 40px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
+      border-radius: 50%;
 
       cursor: pointer;
 
-      border-radius: 50%;
+      user-select: none;
     }
+
+
+    .search-button:hover {
+
+      background: #1d1d1d;
+    }
+
 
     .search-button:active {
-      background: #222;
+
+      background: #292929;
+
+      transform: scale(.94);
     }
 
-    /* =========================
-       FILTER
-    ========================= */
+
+    /* =====================================================
+       FILTER TABS
+    ====================================================== */
 
     .filter-tabs {
+
       display: flex;
+
       gap: 10px;
 
       padding: 15px 20px;
 
       overflow-x: auto;
+
       scrollbar-width: none;
     }
 
+
     .filter-tabs::-webkit-scrollbar {
+
       display: none;
     }
 
+
     .tab-btn {
+
       flex: 0 0 auto;
 
       padding: 8px 16px;
 
-      background: #222;
-      border: 1px solid #444;
+      background: #222222;
+
+      border: 1px solid #444444;
 
       border-radius: 20px;
 
       cursor: pointer;
 
       font-size: 13px;
-      color: #ccc;
 
-      transition:
-        background .2s ease,
-        color .2s ease,
-        border-color .2s ease;
+      color: #cccccc;
 
       user-select: none;
+
+      transition:
+        background .15s ease,
+        color .15s ease,
+        border-color .15s ease,
+        transform .15s ease;
     }
 
+
+    .tab-btn:hover {
+
+      background: #2a2a2a;
+    }
+
+
+    .tab-btn:active {
+
+      transform: scale(.96);
+    }
+
+
     .tab-btn.active {
+
       background: orange;
-      color: #000;
+
+      color: #000000;
+
       font-weight: 700;
+
       border-color: orange;
     }
 
-    /* =========================
-       SEARCH
-    ========================= */
+
+    /* =====================================================
+       SEARCH BOX
+    ====================================================== */
 
     .search-box {
+
       display: none;
+
       padding: 5px 20px 15px;
     }
 
+
     .search-wrapper {
+
       display: flex;
+
+      width: 100%;
 
       background: #1a1a1a;
 
-      border: 1px solid #333;
+      border: 1px solid #333333;
+
       border-radius: 8px;
 
       padding: 5px 12px;
     }
 
+
     .search-wrapper input {
+
       width: 100%;
 
-      flex: 1;
+      min-width: 0;
 
       background: transparent;
+
       border: none;
+
       outline: none;
 
-      color: #fff;
+      color: #ffffff;
 
       padding: 8px;
+
+      font-family: inherit;
 
       font-size: 14px;
     }
 
+
     .search-wrapper input::placeholder {
-      color: #777;
+
+      color: #777777;
     }
 
-    /* =========================
+
+    /* =====================================================
        MAIN GRID
-    ========================= */
+    ====================================================== */
 
     .main-feed {
 
@@ -191,7 +329,8 @@
 
       display: grid;
 
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
       gap: 12px;
 
@@ -200,20 +339,29 @@
       align-items: start;
     }
 
+
     @media (min-width: 600px) {
 
       .main-feed {
+
         grid-template-columns:
-          repeat(auto-fill, minmax(260px, 1fr));
+          repeat(
+            auto-fill,
+            minmax(260px, 1fr)
+          );
+
       }
 
     }
 
-    /* =========================
+
+    /* =====================================================
        CARD
-    ========================= */
+    ====================================================== */
 
     .card {
+
+      position: relative;
 
       background: #161616;
 
@@ -223,57 +371,72 @@
 
       cursor: pointer;
 
-      border: 1px solid #222;
+      border: 1px solid #222222;
 
-      /* Penting untuk performa */
+      /*
+        Browser tidak perlu merender seluruh
+        isi card yang jauh dari viewport.
+      */
+
       content-visibility: auto;
 
-      contain-intrinsic-size: 300px 210px;
+      contain-intrinsic-size:
+        300px 210px;
+
+      /*
+        Mengurangi repaint.
+      */
+
+      contain: layout paint style;
 
       transform: translateZ(0);
 
-      will-change: transform;
-
-      transition: transform .15s ease;
+      transition:
+        transform .12s ease;
     }
 
+
     .card:active {
+
       transform: scale(.97);
     }
 
-    /* =========================
+
+    /* =====================================================
        VIDEO CONTAINER
-    ========================= */
+    ====================================================== */
 
     .video-container {
 
-      width: 100%;
-
-      background: #222;
-
-      display: flex;
-
       position: relative;
+
+      width: 100%;
 
       aspect-ratio: 16 / 9;
 
       overflow: hidden;
 
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #222222;
+
       contain: layout paint;
     }
 
-    /*
-      Portrait video akan diubah ke 9:16
-      oleh Javascript setelah metadata tersedia.
-    */
 
     .video-container.portrait {
+
       aspect-ratio: 9 / 16;
     }
 
-    /* =========================
-       LOADING
-    ========================= */
+
+    /* =====================================================
+       SHIMMER LOADING
+    ====================================================== */
 
     .loading-shimmer {
 
@@ -281,63 +444,77 @@
         linear-gradient(
           90deg,
           #161616 25%,
-          #252525 50%,
+          #242424 50%,
           #161616 75%
         );
 
       background-size: 200% 100%;
 
-      animation: shimmer 1.5s infinite;
+      animation:
+        shimmer 1.4s infinite;
     }
+
 
     @keyframes shimmer {
 
       0% {
-        background-position: 200% 0;
+
+        background-position:
+          200% 0;
       }
 
       100% {
-        background-position: -200% 0;
+
+        background-position:
+          -200% 0;
       }
 
     }
 
-    /* =========================
+
+    /* =====================================================
        VIDEO
-    ========================= */
+    ====================================================== */
 
     video.thumbnail-preview {
 
       display: block;
 
       width: 100%;
+
       height: 100%;
 
       object-fit: cover;
 
+      background: #222222;
+
       opacity: 0;
 
-      transition: opacity .25s ease;
-
-      background: #222;
-
       /*
-        Jangan menggunakan autoplay.
-        Ini mengurangi beban CPU.
+        Tidak menggunakan transition
+        terlalu lama agar lebih cepat.
       */
+
+      transition:
+        opacity .18s ease;
     }
 
+
     video.thumbnail-preview.loaded {
+
       opacity: 1;
     }
 
-    /* =========================
+
+    /* =====================================================
        CARD INFO
-    ========================= */
+    ====================================================== */
 
     .card-info {
+
       padding: 10px;
     }
+
 
     .card-title {
 
@@ -358,125 +535,187 @@
       -webkit-box-orient: vertical;
     }
 
-    /* =========================
+
+    /* =====================================================
        PAGINATION
-    ========================= */
+    ====================================================== */
 
     .pagination {
 
       display: flex;
 
+      align-items: center;
+
       justify-content: center;
 
-      align-items: center;
+      flex-wrap: wrap;
 
       gap: 5px;
 
-      padding: 20px 10px 60px;
-
-      flex-wrap: wrap;
+      padding:
+        20px 10px 60px;
     }
+
 
     .page-btn {
 
       min-width: 38px;
+
       height: 38px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
+
+      padding: 0 10px;
 
       background: #1a1a1a;
 
-      border: 1px solid #333;
+      border: 1px solid #333333;
 
       border-radius: 8px;
 
-      cursor: pointer;
+      color: #ffffff;
+
+      font-family: inherit;
 
       font-size: 14px;
 
-      color: #fff;
+      cursor: pointer;
 
-      transition: .15s ease;
+      transition:
+        background .12s ease,
+        transform .12s ease;
     }
+
 
     .page-btn:hover {
+
       background: #292929;
     }
+
+
+    .page-btn:active {
+
+      transform: scale(.94);
+    }
+
 
     .page-btn.active {
 
       background: orange;
 
-      color: #000;
+      color: #000000;
 
-      font-weight: bold;
+      font-weight: 700;
 
       border-color: orange;
     }
 
-    /* =========================
-       EMPTY / ERROR
-    ========================= */
+
+    /* =====================================================
+       MESSAGE
+    ====================================================== */
 
     .message {
 
       grid-column: 1 / -1;
 
+      min-height: 200px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
       text-align: center;
 
-      padding: 60px 20px;
-
-      color: #888;
+      color: #777777;
 
       font-size: 14px;
     }
+
+
+    /* =====================================================
+       PAGE LOADING
+    ====================================================== */
+
+    .page-loading {
+
+      grid-column: 1 / -1;
+
+      min-height: 250px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: #777777;
+
+      font-size: 14px;
+    }
+
 
   </style>
 
 </head>
 
+
 <body>
 
-  <!-- HEADER -->
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
   <header class="header">
 
     <div class="logo">
-      STREAM<span style="color:orange;">VID</span>
+      STREAM<span>VID</span>
     </div>
+
 
     <div
       class="search-button"
-      onclick="toggleSearch()"
-      aria-label="Cari"
+      id="searchButton"
+      role="button"
+      tabindex="0"
+      aria-label="Cari video"
     >
+
       <span class="material-symbols-outlined">
         search
       </span>
+
     </div>
 
   </header>
 
 
-  <!-- FILTER -->
+  <!-- =====================================================
+       FILTER
+  ====================================================== -->
 
   <div class="filter-tabs">
 
     <div
       class="tab-btn"
       id="btn-latest"
-      onclick="setFilter('latest')"
+      data-filter="latest"
     >
       Video Terbaru
     </div>
 
+
     <div
       class="tab-btn"
       id="btn-all"
-      onclick="setFilter('all')"
+      data-filter="all"
     >
       Semua Video
     </div>
@@ -484,7 +723,9 @@
   </div>
 
 
-  <!-- SEARCH -->
+  <!-- =====================================================
+       SEARCH
+  ====================================================== -->
 
   <div
     class="search-box"
@@ -498,6 +739,7 @@
         id="searchInput"
         placeholder="Cari judul..."
         autocomplete="off"
+        spellcheck="false"
       >
 
     </div>
@@ -505,92 +747,250 @@
   </div>
 
 
-  <!-- VIDEO GRID -->
+  <!-- =====================================================
+       MAIN FEED
+  ====================================================== -->
 
   <main
     class="main-feed"
     id="mainFeed"
-  ></main>
+  >
+
+    <div class="page-loading">
+      Memuat video...
+    </div>
+
+  </main>
 
 
-  <!-- PAGINATION -->
+  <!-- =====================================================
+       PAGINATION
+  ====================================================== -->
 
-  <div
+  <nav
     class="pagination"
     id="pagination"
-  ></div>
+    aria-label="Pagination"
+  ></nav>
 
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
   <script>
 
+
     /* =====================================================
-       DATA
-    ===================================================== */
+       KONFIGURASI
+    ====================================================== */
+
+    /*
+      30 video setiap halaman.
+
+      Jika layar desktop mempunyai 4 kolom,
+      maka kira-kira 7-8 baris per halaman.
+
+      Jika 3 kolom:
+      sekitar 10 baris.
+
+      Jika 2 kolom:
+      sekitar 15 baris.
+    */
+
+    const ITEMS_PER_PAGE = 30;
+
+
+    /*
+      Render dilakukan 10 kartu setiap batch.
+
+      Tujuannya agar browser tidak freeze
+      ketika pindah halaman.
+    */
+
+    const RENDER_BATCH_SIZE = 10;
+
+
+    /*
+      Video mulai diload ketika mendekati viewport.
+    */
+
+    const LAZY_ROOT_MARGIN =
+      "250px 0px";
+
+
+    /*
+      Video yang benar-benar jauh dari viewport
+      dapat dilepas dari buffer.
+    */
+
+    const UNLOAD_ROOT_MARGIN =
+      "900px 0px";
+
+
+    /* =====================================================
+       STATE
+    ====================================================== */
 
     let rawVideos = [];
 
     let filteredVideos = [];
 
 
-    /* =====================================================
-       SESSION
-    ===================================================== */
+    /*
+      Ambil halaman terakhir dari session.
+    */
 
     let currentPage =
       parseInt(
-        sessionStorage.getItem('sv_page')
+        sessionStorage.getItem(
+          "sv_page"
+        ),
+        10
       ) || 1;
 
+
+    /*
+      Ambil filter terakhir.
+    */
+
     let currentFilter =
-      sessionStorage.getItem('sv_filter')
-      || 'latest';
+      sessionStorage.getItem(
+        "sv_filter"
+      ) || "latest";
+
+
+    /*
+      Token untuk membatalkan proses
+      render halaman sebelumnya.
+    */
+
+    let renderToken = 0;
+
+
+    /*
+      Cache data halaman.
+
+      Contoh:
+
+      page 1 -> 30 data
+      page 2 -> 30 data
+      page 3 -> 30 data
+    */
+
+    const pageCache =
+      new Map();
+
+
+    /*
+      Cache pencarian.
+    */
+
+    const searchCache =
+      new Map();
+
+
+    /*
+      Promise fetch videos.json.
+
+      Hanya boleh ada satu request.
+    */
+
+    let videosPromise = null;
 
 
     /* =====================================================
-       JUMLAH VIDEO PER HALAMAN
-       
-       60 VIDEO = JAUH LEBIH BANYAK BARIS
-       
-       Browser TIDAK akan langsung load semua video.
-    ===================================================== */
+       DOM
+    ====================================================== */
 
-    const itemsPerPage = 60;
+    const mainFeed =
+      document.getElementById(
+        "mainFeed"
+      );
+
+
+    const pagination =
+      document.getElementById(
+        "pagination"
+      );
+
+
+    const searchBox =
+      document.getElementById(
+        "searchBox"
+      );
+
+
+    const searchInput =
+      document.getElementById(
+        "searchInput"
+      );
+
+
+    const searchButton =
+      document.getElementById(
+        "searchButton"
+      );
 
 
     /* =====================================================
-       VIDEO LAZY LOAD
-       
-       Video hanya load ketika mendekati viewport.
-    ===================================================== */
+       VIDEO LAZY LOAD OBSERVER
+    ====================================================== */
 
     const videoObserver =
       new IntersectionObserver(
-        (entries, observer) => {
+        function(entries, observer) {
 
-          entries.forEach(entry => {
+          entries.forEach(
+            function(entry) {
 
-            const video = entry.target;
+              if (
+                !entry.isIntersecting
+              ) {
 
-            if (!entry.isIntersecting) {
-              return;
+                return;
+
+              }
+
+
+              const video =
+                entry.target;
+
+
+              /*
+                Load video hanya jika
+                belum dimuat.
+              */
+
+              if (
+                video.dataset.loaded !==
+                "true"
+              ) {
+
+                loadVideo(
+                  video
+                );
+
+              }
+
+
+              /*
+                Tidak perlu terus
+                mengawasi setelah
+                berhasil masuk viewport.
+              */
+
+              observer.unobserve(
+                video
+              );
+
             }
-
-            loadVideo(video);
-
-            observer.unobserve(video);
-
-          });
+          );
 
         },
         {
-          /*
-            Tidak perlu terlalu jauh.
-
-            150px cukup untuk membuat video
-            mulai diproses sebelum terlihat.
-          */
-
-          rootMargin: "150px 0px",
+          rootMargin:
+            LAZY_ROOT_MARGIN,
 
           threshold: 0
         }
@@ -599,50 +999,81 @@
 
     /* =====================================================
        VIDEO UNLOAD OBSERVER
-       
-       Video yang terlalu jauh dari layar akan dibersihkan.
-       
-       Ini penting kalau 60 video ada dalam satu halaman.
-    ===================================================== */
+    ====================================================== */
 
     const unloadObserver =
       new IntersectionObserver(
-        (entries) => {
+        function(entries) {
 
-          entries.forEach(entry => {
+          entries.forEach(
+            function(entry) {
 
-            const video = entry.target;
+              if (
+                entry.isIntersecting
+              ) {
 
-            if (
-              !entry.isIntersecting &&
-              video.dataset.loaded === "true"
-            ) {
+                return;
+
+              }
+
+
+              const video =
+                entry.target;
+
 
               /*
-                Hanya unload jika cukup jauh
+                Belum loaded -> tidak perlu unload.
+              */
+
+              if (
+                video.dataset.loaded !==
+                "true"
+              ) {
+
+                return;
+
+              }
+
+
+              const rect =
+                video.getBoundingClientRect();
+
+
+              /*
+                Benar-benar jauh
                 dari viewport.
               */
 
-              const rect =
-                entry.boundingClientRect;
-
               const farAbove =
-                rect.bottom < -800;
+                rect.bottom <
+                -900;
+
 
               const farBelow =
-                rect.top > window.innerHeight + 800;
+                rect.top >
+                window.innerHeight +
+                900;
 
-              if (farAbove || farBelow) {
-                unloadVideo(video);
+
+              if (
+                farAbove ||
+                farBelow
+              ) {
+
+                unloadVideo(
+                  video
+                );
+
               }
 
             }
-
-          });
+          );
 
         },
         {
-          rootMargin: "800px 0px",
+          rootMargin:
+            UNLOAD_ROOT_MARGIN,
+
           threshold: 0
         }
       );
@@ -650,51 +1081,100 @@
 
     /* =====================================================
        LOAD VIDEO
-    ===================================================== */
+    ====================================================== */
 
     function loadVideo(video) {
 
       if (
-        video.dataset.loaded === "true"
+        !video
       ) {
+
         return;
+
       }
+
+
+      /*
+        Jangan load dua kali.
+      */
+
+      if (
+        video.dataset.loaded ===
+        "true"
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        video.dataset.loading ===
+        "true"
+      ) {
+
+        return;
+
+      }
+
 
       const source =
-        video.querySelector("source");
+        video.querySelector(
+          "source"
+        );
 
-      if (!source) {
+
+      if (
+        !source
+      ) {
+
         return;
+
       }
+
 
       const url =
         source.dataset.src;
 
-      if (!url) {
+
+      if (
+        !url
+      ) {
+
         return;
+
       }
 
+
       /*
-        Tandai sebagai sedang diproses.
+        Tandai loading.
       */
 
-      video.dataset.loaded = "loading";
+      video.dataset.loading =
+        "true";
+
 
       /*
-        preload metadata saja.
-        Tidak download seluruh video.
+        Metadata saja.
+
+        Browser tidak diminta
+        download seluruh video.
       */
 
-      video.preload = "metadata";
+      video.preload =
+        "metadata";
+
 
       /*
-        Pasang URL sebenarnya.
+        Masukkan URL asli.
       */
 
-      source.src = url;
+      source.src =
+        url;
+
 
       /*
-        Load metadata.
+        Mulai proses metadata.
       */
 
       video.load();
@@ -704,111 +1184,163 @@
 
     /* =====================================================
        UNLOAD VIDEO
-    ===================================================== */
+    ====================================================== */
 
     function unloadVideo(video) {
 
-      /*
-        Jangan unload kalau sedang terlihat.
-      */
+      if (
+        !video
+      ) {
+
+        return;
+
+      }
+
 
       const rect =
         video.getBoundingClientRect();
 
-      const visible =
-        rect.bottom > 0 &&
-        rect.top < window.innerHeight;
 
-      if (visible) {
+      /*
+        Jangan unload yang masih
+        dekat dengan viewport.
+      */
+
+      const stillNear =
+        rect.bottom >
+        -500 &&
+        rect.top <
+        window.innerHeight +
+        500;
+
+
+      if (
+        stillNear
+      ) {
+
         return;
+
       }
+
 
       const source =
-        video.querySelector("source");
+        video.querySelector(
+          "source"
+        );
 
-      if (!source) {
+
+      if (
+        !source
+      ) {
+
         return;
+
       }
 
-      /*
-        Simpan URL asli.
-
-        Kalau source.src sudah berubah,
-        dataset.src tetap menyimpan URL awal.
-      */
 
       try {
+
         video.pause();
+
       } catch (e) {}
 
-      /*
-        Hapus source aktif.
-      */
-
-      source.removeAttribute("src");
 
       /*
-        Reset video.
+        Lepaskan resource media.
       */
 
-      video.removeAttribute("src");
+      source.removeAttribute(
+        "src"
+      );
 
-      /*
-        Jangan load lagi sekarang.
-      */
 
-      video.load();
+      try {
+
+        video.load();
+
+      } catch (e) {}
+
 
       /*
         Reset status.
       */
 
-      video.dataset.loaded = "false";
+      video.dataset.loaded =
+        "false";
 
-      /*
-        Hilangkan class loaded.
-      */
 
-      video.classList.remove("loaded");
+      video.dataset.loading =
+        "false";
 
-      /*
-        Kembali ke shimmer.
-      */
+
+      video.classList.remove(
+        "loaded"
+      );
+
 
       const container =
         video.parentElement;
 
-      if (container) {
+
+      if (
+        container
+      ) {
+
         container.classList.add(
           "loading-shimmer"
         );
+
       }
+
+
+      /*
+        Video akan load kembali
+        jika user scroll mendekatinya.
+      */
+
+      videoObserver.observe(
+        video
+      );
 
     }
 
 
     /* =====================================================
-       VIDEO METADATA
-    ===================================================== */
+       VIDEO EVENTS
+    ====================================================== */
 
-    function setupVideo(video, card) {
+    function setupVideo(
+      video
+    ) {
+
+      /*
+        Metadata berhasil.
+      */
 
       video.addEventListener(
         "loadedmetadata",
         function() {
 
-          /*
-            Metadata sudah berhasil dibaca.
-          */
+          video.dataset.loaded =
+            "true";
 
-          video.dataset.loaded = "true";
 
-          video.classList.add("loaded");
+          video.dataset.loading =
+            "false";
+
+
+          video.classList.add(
+            "loaded"
+          );
+
 
           const container =
             video.parentElement;
 
-          if (container) {
+
+          if (
+            container
+          ) {
 
             container.classList.remove(
               "loading-shimmer"
@@ -816,8 +1348,15 @@
 
           }
 
+
           /*
-            Cek portrait.
+            Deteksi portrait.
+
+            Landscape:
+            16:9
+
+            Portrait:
+            9:16
           */
 
           if (
@@ -829,12 +1368,19 @@
               this.videoWidth /
               this.videoHeight;
 
-            if (ratio < 1) {
 
-              if (container) {
+            if (
+              ratio < 1
+            ) {
+
+              if (
+                container
+              ) {
+
                 container.classList.add(
                   "portrait"
                 );
+
               }
 
             }
@@ -843,31 +1389,25 @@
 
         },
         {
-          once: false,
           passive: true
         }
       );
 
 
       /*
-        Jika gagal load,
-        jangan membuat halaman crash.
+        Error handler.
       */
 
       video.addEventListener(
         "error",
         function() {
 
-          video.dataset.loaded = "false";
+          video.dataset.loaded =
+            "false";
 
-          const container =
-            video.parentElement;
 
-          if (container) {
-            container.classList.add(
-              "loading-shimmer"
-            );
-          }
+          video.dataset.loading =
+            "false";
 
         },
         {
@@ -879,141 +1419,202 @@
 
 
     /* =====================================================
-       CREATE CARD
-    ===================================================== */
+       CREATE VIDEO CARD
+    ====================================================== */
 
-    function createCard(videoData) {
+    function createCard(
+      videoData
+    ) {
+
+      /*
+        CARD
+      */
 
       const card =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
-      card.className = "card";
+
+      card.className =
+        "card";
 
 
-      /* =========================
-         VIDEO CONTAINER
-      ========================= */
+      /*
+        VIDEO CONTAINER
+      */
 
       const videoContainer =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       videoContainer.className =
         "video-container loading-shimmer";
 
 
-      /* =========================
-         VIDEO
-      ========================= */
+      /*
+        VIDEO
+      */
 
       const video =
-        document.createElement("video");
+        document.createElement(
+          "video"
+        );
+
 
       video.className =
         "thumbnail-preview";
 
-      video.muted = true;
 
-      video.playsInline = true;
+      video.muted =
+        true;
+
+
+      video.playsInline =
+        true;
+
 
       /*
-        Tidak autoplay.
-        Tidak preload video.
+        Sangat penting:
+
+        jangan preload semua video.
       */
 
-      video.preload = "none";
+      video.preload =
+        "none";
 
-      video.dataset.loaded = "false";
+
+      video.dataset.loaded =
+        "false";
 
 
-      /* =========================
-         SOURCE
-      ========================= */
+      video.dataset.loading =
+        "false";
 
-      const source =
-        document.createElement("source");
 
       /*
+        SOURCE
+
+        URL tidak diletakkan langsung
+        pada src.
+
         URL disimpan di data-src.
 
-        Browser belum mengetahui URL
-        video sebelum observer memanggil
-        loadVideo().
+        Jadi browser belum meminta
+        file video.
       */
 
+      const source =
+        document.createElement(
+          "source"
+        );
+
+
       source.dataset.src =
-        String(videoData.Url || "")
-        + "#t=0.5";
-
-      source.type = "video/mp4";
-
-
-      video.appendChild(source);
-
-      videoContainer.appendChild(video);
+        String(
+          videoData.Url || ""
+        ) + "#t=0.5";
 
 
-      /* =========================
-         INFO
-      ========================= */
+      source.type =
+        "video/mp4";
 
-      const info =
-        document.createElement("div");
 
-      info.className =
+      video.appendChild(
+        source
+      );
+
+
+      videoContainer.appendChild(
+        video
+      );
+
+
+      /*
+        CARD INFO
+      */
+
+      const cardInfo =
+        document.createElement(
+          "div"
+        );
+
+
+      cardInfo.className =
         "card-info";
 
 
       const title =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       title.className =
         "card-title";
 
+
       /*
-        textContent lebih aman daripada
-        innerHTML.
+        textContent lebih aman
+        daripada innerHTML.
       */
 
       title.textContent =
-        videoData.Judul || "Tanpa Judul";
+        videoData.Judul ||
+        "Tanpa Judul";
 
 
-      info.appendChild(title);
-
-
-      /* =========================
-         CARD
-      ========================= */
-
-      card.appendChild(videoContainer);
-
-      card.appendChild(info);
-
-
-      /* =========================
-         VIDEO EVENT
-      ========================= */
-
-      setupVideo(video, card);
+      cardInfo.appendChild(
+        title
+      );
 
 
       /*
-        Lazy load observer.
+        GABUNGKAN
       */
 
-      videoObserver.observe(video);
+      card.appendChild(
+        videoContainer
+      );
+
+
+      card.appendChild(
+        cardInfo
+      );
+
+
+      /*
+        EVENT VIDEO
+      */
+
+      setupVideo(
+        video
+      );
+
+
+      /*
+        Lazy observer.
+      */
+
+      videoObserver.observe(
+        video
+      );
 
 
       /*
         Unload observer.
       */
 
-      unloadObserver.observe(video);
+      unloadObserver.observe(
+        video
+      );
 
 
-      /* =========================
-         CLICK
-      ========================= */
+      /*
+        CARD CLICK
+      */
 
       card.addEventListener(
         "click",
@@ -1035,74 +1636,116 @@
 
 
     /* =====================================================
-       LOAD DATA
-    ===================================================== */
+       FETCH videos.json
+    ====================================================== */
 
-    fetch("videos.json", {
-      cache: "default"
-    })
+    function fetchVideos() {
 
-      .then(response => {
+      /*
+        Jika request sedang berjalan,
+        gunakan request yang sama.
+      */
 
-        if (!response.ok) {
-          throw new Error(
-            "HTTP " + response.status
-          );
-        }
+      if (
+        videosPromise
+      ) {
 
-        return response.json();
+        return videosPromise;
 
-      })
+      }
 
-      .then(data => {
 
-        if (!Array.isArray(data)) {
-          throw new Error(
-            "Format videos.json harus array"
-          );
-        }
+      videosPromise =
+        fetch(
+          "videos.json",
+          {
+            cache: "default"
+          }
+        )
+        .then(
+          function(response) {
 
-        rawVideos = data;
+            if (
+              !response.ok
+            ) {
 
-        /*
-          Pastikan halaman tersimpan
-          masih valid.
-        */
+              throw new Error(
+                "HTTP " +
+                response.status
+              );
 
-        applyFilterAndRender(false);
+            }
 
-      })
 
-      .catch(error => {
+            return response.json();
 
-        console.error(
-          "Gagal memuat videos.json:",
-          error
+          }
+        )
+        .then(
+          function(data) {
+
+            if (
+              !Array.isArray(data)
+            ) {
+
+              throw new Error(
+                "videos.json harus berupa array"
+              );
+
+            }
+
+
+            rawVideos =
+              data;
+
+
+            return data;
+
+          }
+        )
+        .catch(
+          function(error) {
+
+            /*
+              Jika gagal,
+              boleh dicoba kembali.
+            */
+
+            videosPromise =
+              null;
+
+
+            throw error;
+
+          }
         );
 
-        const container =
-          document.getElementById(
-            "mainFeed"
-          );
 
-        container.innerHTML =
-          '<div class="message">' +
-          'Gagal memuat daftar video.' +
-          '</div>';
+      return videosPromise;
 
-      });
+    }
 
 
     /* =====================================================
-       FILTER
-    ===================================================== */
+       FILTER DATA
+    ====================================================== */
 
     function applyFilterAndRender(
       resetPage = true
     ) {
 
-      if (resetPage) {
-        currentPage = 1;
+      /*
+        Kembali ke halaman 1
+        jika filter berubah.
+      */
+
+      if (
+        resetPage
+      ) {
+
+        currentPage =
+          1;
+
       }
 
 
@@ -1111,26 +1754,35 @@
       */
 
       document
-        .querySelectorAll(".tab-btn")
-        .forEach(button => {
+        .querySelectorAll(
+          ".tab-btn"
+        )
+        .forEach(
+          function(button) {
 
-          button.classList.remove(
-            "active"
-          );
+            button.classList.remove(
+              "active"
+            );
 
-        });
+          }
+        );
 
 
       const activeButton =
         document.getElementById(
-          "btn-" + currentFilter
+          "btn-" +
+          currentFilter
         );
 
 
-      if (activeButton) {
+      if (
+        activeButton
+      ) {
+
         activeButton.classList.add(
           "active"
         );
+
       }
 
 
@@ -1145,12 +1797,20 @@
 
 
       /*
-        Sorting.
+        Buat array baru.
 
-        latest = JSON dari bawah ke atas.
+        latest:
+        data paling belakang
+        ditampilkan dahulu.
+
+        all:
+        urutan JSON asli.
       */
 
-      if (currentFilter === "latest") {
+      if (
+        currentFilter ===
+        "latest"
+      ) {
 
         filteredVideos =
           [...rawVideos].reverse();
@@ -1164,8 +1824,15 @@
 
 
       /*
-        Pastikan halaman tidak melebihi
-        jumlah halaman.
+        Filter berubah,
+        cache halaman harus dibersihkan.
+      */
+
+      pageCache.clear();
+
+
+      /*
+        Pastikan currentPage valid.
       */
 
       const totalPages =
@@ -1173,52 +1840,298 @@
           1,
           Math.ceil(
             filteredVideos.length /
-            itemsPerPage
+            ITEMS_PER_PAGE
           )
         );
 
 
-      if (currentPage > totalPages) {
-        currentPage = totalPages;
+      if (
+        currentPage >
+        totalPages
+      ) {
+
+        currentPage =
+          totalPages;
+
       }
 
 
-      renderPage(currentPage);
+      /*
+        Render.
+      */
+
+      renderPage(
+        currentPage
+      );
 
     }
 
 
     /* =====================================================
-       SET FILTER
-    ===================================================== */
+       GET PAGE DATA
+    ====================================================== */
 
-    function setFilter(type) {
+    function getPageData(
+      page
+    ) {
 
-      currentFilter = type;
+      /*
+        Jika sudah ada cache,
+        langsung gunakan.
+      */
 
-      applyFilterAndRender(true);
+      if (
+        pageCache.has(page)
+      ) {
+
+        return pageCache.get(
+          page
+        );
+
+      }
+
+
+      const start =
+        (
+          page - 1
+        ) *
+        ITEMS_PER_PAGE;
+
+
+      const data =
+        filteredVideos.slice(
+          start,
+          start +
+          ITEMS_PER_PAGE
+        );
+
+
+      /*
+        Simpan.
+      */
+
+      pageCache.set(
+        page,
+        data
+      );
+
+
+      return data;
+
+    }
+
+
+    /* =====================================================
+       PREFETCH
+    ====================================================== */
+
+    function prefetchPage(
+      page
+    ) {
+
+      /*
+        Tidak ada halaman negatif.
+      */
+
+      if (
+        page < 1
+      ) {
+
+        return;
+
+      }
+
+
+      const totalPages =
+        Math.ceil(
+          filteredVideos.length /
+          ITEMS_PER_PAGE
+        );
+
+
+      /*
+        Jangan prefetch di luar batas.
+      */
+
+      if (
+        page >
+        totalPages
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+        Sudah ada cache.
+      */
+
+      if (
+        pageCache.has(page)
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+        Jalankan ketika browser
+        sedang senggang.
+      */
+
+      const prepare =
+        function() {
+
+          getPageData(
+            page
+          );
+
+        };
+
+
+      if (
+        "requestIdleCallback" in window
+      ) {
+
+        requestIdleCallback(
+          prepare,
+          {
+            timeout: 500
+          }
+        );
+
+      } else {
+
+        setTimeout(
+          prepare,
+          50
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       YIELD BROWSER
+    ====================================================== */
+
+    function yieldBrowser() {
+
+      return new Promise(
+        function(resolve) {
+
+          /*
+            requestAnimationFrame
+            memberi kesempatan browser
+            melakukan paint.
+          */
+
+          requestAnimationFrame(
+            function() {
+
+              requestAnimationFrame(
+                function() {
+
+                  resolve();
+
+                }
+              );
+
+            }
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       CLEANUP PAGE LAMA
+    ====================================================== */
+
+    function cleanupCurrentVideos() {
+
+      const videos =
+        mainFeed.querySelectorAll(
+          "video.thumbnail-preview"
+        );
+
+
+      videos.forEach(
+        function(video) {
+
+          try {
+
+            videoObserver.unobserve(
+              video
+            );
+
+          } catch (e) {}
+
+
+          try {
+
+            unloadObserver.unobserve(
+              video
+            );
+
+          } catch (e) {}
+
+
+          try {
+
+            video.pause();
+
+          } catch (e) {}
+
+        }
+      );
 
     }
 
 
     /* =====================================================
        RENDER PAGE
-    ===================================================== */
+    ====================================================== */
 
-    function renderPage(page) {
+    async function renderPage(
+      page
+    ) {
 
       /*
-        Pastikan page valid.
+        Token baru.
+
+        Jika user cepat menekan:
+        1 -> 2 -> 3
+
+        render halaman 1/2 yang belum selesai
+        akan dibatalkan.
+      */
+
+      const token =
+        ++renderToken;
+
+
+      /*
+        Validasi page.
       */
 
       page =
         Math.max(
           1,
-          parseInt(page) || 1
+          parseInt(
+            page,
+            10
+          ) || 1
         );
 
 
-      currentPage = page;
+      currentPage =
+        page;
 
 
       /*
@@ -1231,130 +2144,224 @@
       );
 
 
-      const container =
-        document.getElementById(
-          "mainFeed"
-        );
+      /*
+        Bersihkan video halaman lama.
+      */
+
+      cleanupCurrentVideos();
 
 
       /*
         Kosongkan grid.
       */
 
-      container.replaceChildren();
+      mainFeed.replaceChildren();
 
 
       /*
-        Hitung data.
+        Ambil data halaman.
+
+        Kalau sudah diprefetch,
+        data berasal dari cache.
       */
 
-      const start =
-        (page - 1) *
-        itemsPerPage;
-
-
       const dataToShow =
-        filteredVideos.slice(
-          start,
-          start + itemsPerPage
+        getPageData(
+          page
         );
 
 
       /*
-        Jika kosong.
+        Update pagination.
       */
 
-      if (dataToShow.length === 0) {
+      renderPagination();
+
+
+      /*
+        Tidak ada data.
+      */
+
+      if (
+        dataToShow.length === 0
+      ) {
 
         const message =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
+
 
         message.className =
           "message";
 
+
         message.textContent =
           "Tidak ada video.";
 
-        container.appendChild(
+
+        mainFeed.appendChild(
           message
         );
 
-        renderPagination();
 
         return;
+
       }
 
 
       /*
-        Buat semua card.
+        ====================================================
+        RENDER BERTAHAP
 
-        Walaupun 60 card dibuat,
-        video TIDAK otomatis di-load.
+        30 card:
 
-        Hanya video dekat viewport
-        yang akan masuk network.
+        batch 1 = 10
+        browser paint
+        batch 2 = 10
+        browser paint
+        batch 3 = 10
+        ====================================================
       */
 
-      const fragment =
-        document.createDocumentFragment();
+      for (
+        let i = 0;
+        i < dataToShow.length;
+        i += RENDER_BATCH_SIZE
+      ) {
+
+        /*
+          Kalau user sudah pindah halaman,
+          batalkan render ini.
+        */
+
+        if (
+          token !==
+          renderToken
+        ) {
+
+          return;
+
+        }
 
 
-      dataToShow.forEach(
-        videoData => {
+        const fragment =
+          document.createDocumentFragment();
+
+
+        const end =
+          Math.min(
+            i +
+            RENDER_BATCH_SIZE,
+            dataToShow.length
+          );
+
+
+        for (
+          let j = i;
+          j < end;
+          j++
+        ) {
+
+          const card =
+            createCard(
+              dataToShow[j]
+            );
+
 
           fragment.appendChild(
-            createCard(videoData)
+            card
           );
 
         }
-      );
 
 
-      container.appendChild(
-        fragment
-      );
+        mainFeed.appendChild(
+          fragment
+        );
 
 
-      renderPagination();
+        /*
+          Beri browser kesempatan
+          melakukan paint.
+        */
+
+        await yieldBrowser();
+
+      }
+
+
+      /*
+        Jika render selesai,
+        prefetch halaman berikutnya.
+      */
+
+      if (
+        token ===
+        renderToken
+      ) {
+
+        prefetchPage(
+          page + 1
+        );
+
+
+        /*
+          Halaman sebelumnya juga
+          disiapkan jika user menekan
+          tombol kembali.
+        */
+
+        prefetchPage(
+          page - 1
+        );
+
+      }
 
     }
 
 
     /* =====================================================
        PAGINATION
-    ===================================================== */
+    ====================================================== */
 
     function renderPagination() {
 
-      const nav =
-        document.getElementById(
-          "pagination"
-        );
-
-
-      nav.replaceChildren();
+      pagination.replaceChildren();
 
 
       const totalPages =
         Math.ceil(
           filteredVideos.length /
-          itemsPerPage
+          ITEMS_PER_PAGE
         );
 
 
-      if (totalPages <= 1) {
+      /*
+        Kalau hanya satu halaman,
+        pagination tidak ditampilkan.
+      */
+
+      if (
+        totalPages <= 1
+      ) {
+
         return;
+
       }
 
 
-      const maxVisible = 10;
+      const maxVisible =
+        10;
 
 
       let startPage =
         Math.max(
           1,
           currentPage -
-          Math.floor(maxVisible / 2)
+          Math.floor(
+            maxVisible / 2
+          )
         );
 
 
@@ -1385,26 +2392,27 @@
       }
 
 
-      /* =========================
-         PREVIOUS
-      ========================= */
+      /*
+        PREVIOUS
+      */
 
-      if (currentPage > 1) {
+      if (
+        currentPage > 1
+      ) {
 
-        const button =
+        pagination.appendChild(
           createPageButton(
             "❮",
             currentPage - 1
-          );
-
-        nav.appendChild(button);
+          )
+        );
 
       }
 
 
-      /* =========================
-         NUMBER
-      ========================= */
+      /*
+        NOMOR HALAMAN
+      */
 
       for (
         let i = startPage;
@@ -1412,34 +2420,32 @@
         i++
       ) {
 
-        const button =
+        pagination.appendChild(
           createPageButton(
             String(i),
             i,
             i === currentPage
-          );
-
-        nav.appendChild(button);
+          )
+        );
 
       }
 
 
-      /* =========================
-         NEXT
-      ========================= */
+      /*
+        NEXT
+      */
 
       if (
         currentPage <
         totalPages
       ) {
 
-        const button =
+        pagination.appendChild(
           createPageButton(
             "❯",
             currentPage + 1
-          );
-
-        nav.appendChild(button);
+          )
+        );
 
       }
 
@@ -1448,7 +2454,7 @@
 
     /* =====================================================
        CREATE PAGE BUTTON
-    ===================================================== */
+    ====================================================== */
 
     function createPageButton(
       text,
@@ -1461,28 +2467,61 @@
           "button"
         );
 
+
+      button.type =
+        "button";
+
+
       button.className =
         "page-btn";
 
-      if (active) {
+
+      if (
+        active
+      ) {
+
         button.classList.add(
           "active"
         );
+
       }
 
-      button.textContent = text;
 
-      button.type = "button";
+      button.textContent =
+        text;
+
 
       button.addEventListener(
         "click",
         function() {
 
-          renderPage(page);
+          /*
+            Kalau klik halaman
+            yang sedang dibuka,
+            tidak melakukan apa-apa.
+          */
+
+          if (
+            page ===
+            currentPage
+          ) {
+
+            return;
+
+          }
+
 
           /*
-            Kembali ke atas
-            secara halus.
+            Render langsung.
+          */
+
+          renderPage(
+            page
+          );
+
+
+          /*
+            Kembali ke atas.
           */
 
           window.scrollTo({
@@ -1490,8 +2529,19 @@
             behavior: "smooth"
           });
 
+
+          /*
+            Segera siapkan halaman
+            setelah halaman yang diklik.
+          */
+
+          prefetchPage(
+            page + 1
+          );
+
         }
       );
+
 
       return button;
 
@@ -1499,57 +2549,131 @@
 
 
     /* =====================================================
+       FILTER BUTTON EVENT
+    ====================================================== */
+
+    document
+      .querySelectorAll(
+        ".tab-btn"
+      )
+      .forEach(
+        function(button) {
+
+          button.addEventListener(
+            "click",
+            function() {
+
+              currentFilter =
+                this.dataset.filter;
+
+
+              /*
+                Reset search.
+              */
+
+              searchInput.value =
+                "";
+
+
+              /*
+                Reset cache pencarian.
+              */
+
+              searchCache.clear();
+
+
+              /*
+                Terapkan filter.
+              */
+
+              applyFilterAndRender(
+                true
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =====================================================
        SEARCH TOGGLE
-    ===================================================== */
+    ====================================================== */
 
     function toggleSearch() {
 
-      const box =
-        document.getElementById(
-          "searchBox"
-        );
+      const isOpen =
+        searchBox.style.display ===
+        "block";
+
 
       if (
-        box.style.display ===
-        "block"
+        isOpen
       ) {
 
-        box.style.display =
+        searchBox.style.display =
           "none";
 
       } else {
 
-        box.style.display =
+        searchBox.style.display =
           "block";
 
-        setTimeout(() => {
 
-          document
-            .getElementById(
-              "searchInput"
-            )
-            .focus();
+        setTimeout(
+          function() {
 
-        }, 50);
+            searchInput.focus();
+
+          },
+          30
+        );
 
       }
 
     }
 
 
-    /* =====================================================
-       SEARCH
-    ===================================================== */
+    searchButton.addEventListener(
+      "click",
+      toggleSearch
+    );
 
-    const searchInput =
-      document.getElementById(
-        "searchInput"
-      );
+
+    searchButton.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key ===
+          "Enter"
+        ) {
+
+          toggleSearch();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SEARCH DEBOUNCE
+    ====================================================== */
+
+    let searchTimer =
+      null;
 
 
     searchInput.addEventListener(
       "input",
       function() {
+
+        clearTimeout(
+          searchTimer
+        );
+
 
         const value =
           this.value
@@ -1558,84 +2682,247 @@
 
 
         /*
-          Kalau kosong,
-          kembali ke filter normal.
+          Tunggu 180ms.
+
+          Jadi kalau user mengetik:
+
+          a
+          ab
+          abc
+
+          tidak langsung render 3 kali.
         */
 
-        if (!value) {
+        searchTimer =
+          setTimeout(
+            function() {
 
-          applyFilterAndRender(true);
+              performSearch(
+                value
+              );
 
-          return;
-
-        }
-
-
-        /*
-          Cari berdasarkan judul.
-        */
-
-        filteredVideos =
-          rawVideos.filter(video => {
-
-            return String(
-              video.Judul || ""
-            )
-              .toLowerCase()
-              .includes(value);
-
-          });
-
-
-        /*
-          Latest = reverse.
-        */
-
-        if (
-          currentFilter ===
-          "latest"
-        ) {
-
-          filteredVideos.reverse();
-
-        }
-
-
-        /*
-          Search selalu halaman 1.
-        */
-
-        renderPage(1);
+            },
+            180
+          );
 
       }
     );
 
 
     /* =====================================================
-       CLEANUP SAAT PINDAH HALAMAN
-       
-       Browser biasanya membersihkan DOM,
-       tapi kita juga membantu release video.
-    ===================================================== */
+       SEARCH
+    ====================================================== */
+
+    function performSearch(
+      value
+    ) {
+
+      /*
+        Search kosong.
+      */
+
+      if (
+        !value
+      ) {
+
+        applyFilterAndRender(
+          true
+        );
+
+        return;
+
+      }
+
+
+      /*
+        Cek cache search.
+      */
+
+      if (
+        searchCache.has(
+          value
+        )
+      ) {
+
+        filteredVideos =
+          searchCache.get(
+            value
+          );
+
+
+        pageCache.clear();
+
+
+        renderPage(
+          1
+        );
+
+
+        return;
+
+      }
+
+
+      /*
+        Filter judul.
+      */
+
+      let result =
+        rawVideos.filter(
+          function(video) {
+
+            const title =
+              String(
+                video.Judul || ""
+              )
+              .toLowerCase();
+
+
+            return title.includes(
+              value
+            );
+
+          }
+        );
+
+
+      /*
+        Kalau filter latest,
+        balik hasil search.
+      */
+
+      if (
+        currentFilter ===
+        "latest"
+      ) {
+
+        result =
+          result.reverse();
+
+      }
+
+
+      /*
+        Cache hasil search.
+      */
+
+      searchCache.set(
+        value,
+        result
+      );
+
+
+      filteredVideos =
+        result;
+
+
+      pageCache.clear();
+
+
+      /*
+        Render halaman pertama.
+      */
+
+      renderPage(
+        1
+      );
+
+    }
+
+
+    /* =====================================================
+       INITIAL LOAD
+    ====================================================== */
+
+    fetchVideos()
+      .then(
+        function() {
+
+          /*
+            Pastikan filter valid.
+          */
+
+          if (
+            currentFilter !==
+            "latest" &&
+            currentFilter !==
+            "all"
+          ) {
+
+            currentFilter =
+              "latest";
+
+          }
+
+
+          /*
+            Terapkan filter
+            dan halaman terakhir.
+          */
+
+          applyFilterAndRender(
+            false
+          );
+
+
+          /*
+            Prefetch halaman berikutnya
+            setelah browser idle.
+          */
+
+          prefetchPage(
+            currentPage + 1
+          );
+
+        }
+      )
+      .catch(
+        function(error) {
+
+          console.error(
+            "Gagal memuat videos.json:",
+            error
+          );
+
+
+          mainFeed.replaceChildren();
+
+
+          const message =
+            document.createElement(
+              "div"
+            );
+
+
+          message.className =
+            "message";
+
+
+          message.textContent =
+            "Gagal memuat videos.json.";
+
+
+          mainFeed.appendChild(
+            message
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       PAGE HIDE CLEANUP
+    ====================================================== */
 
     window.addEventListener(
-      "beforeunload",
+      "pagehide",
       function() {
 
-        document
-          .querySelectorAll(
-            "video.thumbnail-preview"
-          )
-          .forEach(video => {
-
-            try {
-              video.pause();
-            } catch (e) {}
-
-          });
+        cleanupCurrentVideos();
 
       }
     );
+
 
   </script>
 
